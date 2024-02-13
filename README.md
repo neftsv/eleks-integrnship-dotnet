@@ -1,1 +1,0 @@
-# eleks-integrnship-dotnet
