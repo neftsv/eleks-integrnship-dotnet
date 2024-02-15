@@ -6,7 +6,7 @@
         public string? CategoryId { get; set; }
         public int UserId { get; set; }
         public string? Name {  get; set; }
-        public List<Images>? Images { get; set; }
+        public List<Images> Images { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
     }
