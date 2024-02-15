@@ -3,7 +3,7 @@
     public class Users
     {
         public int Id { get; set; }
-        public int RoleId { get; set; }
+        public int RoleId { get; set; } = 0;
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? Surname {  get; set; }
