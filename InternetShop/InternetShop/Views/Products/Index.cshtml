@@ -1,0 +1,168 @@
+﻿@using InternetShop.ViewModels
+@model ProductsViewModel
+
+@{
+    int startPage = Model.PageNumber - 5;
+    int endPage = Model.PageNumber + 5;
+
+    if (startPage < 1)
+    {
+        endPage -= (startPage - 1);
+        startPage = 1;
+    }
+
+    if (endPage > Model.TotalPages)
+    {
+        endPage = Model.TotalPages;
+    }
+
+    var checkedTypes = ViewBag.checkedTypes;
+    var productName = ViewBag.productName;
+}
+
+<div class="main-frame">
+    <div class="filter-bar">
+        <form asp-action="index" method="get">
+            @foreach (var item in Model.Categories)
+            {
+                @if (checkedTypes != null && checkedTypes.Contains(item.Id))
+                {
+                    <input name="categoryId" type="checkbox" value="@item.Id" checked />
+                }
+                else
+                {
+                    <input name="categoryId" type="checkbox" value="@item.Id" />
+                }
+                <label>@item.Name</label>
+                <br />
+            }
+            <br />
+            <input type="submit" />
+        </form>
+    </div>
+    <div class="products-frame">
+        <form asp-action="Index" method="get" class="search-frame">
+            <input name="productName" type="search" value="@productName" class="search-bar" />
+            <input type="submit" value="Пошук" />
+        </form>
+        <div class="products-grid">
+            @foreach (var item in Model.Items)
+            {
+                <div class="product-frame">
+                    <img src="@item.Images[0].Url" width="130" height="130" />
+                    <p>@item.Name</p>
+                    <p>@item.Price ₴</p>
+                </div>
+            }
+        </div>
+        <div class="pagination-frame">
+            @if (Model.PageNumber > 1)
+            {
+                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = 1 })">&lt;&lt;</a>
+                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.PageNumber - 1 })">&lt;</a>
+            }
+
+            @for (var i = startPage; i <= endPage; i++)
+            {
+                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = i })" class="@(i == Model.PageNumber ? "active-page" : "")">@i</a>
+            }
+
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.PageNumber + 1 })">&gt;</a>
+                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.TotalPages })">&gt;&gt;</a>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    html {
+        position: relative;
+        min-height: 100%;
+    }
+
+    body {
+        margin-bottom: 60px;
+        min-height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        min-width: 100%;
+        padding: 0;
+    }
+
+    .pb-3 {
+        height: 100%;
+    }
+
+    .page-wraper {
+        min-height: 100%;
+        min-width: 100%;
+    }
+
+    p {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+
+    .main-frame {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .filter-bar {
+        padding: 20px;
+        width: 15%;
+        min-height: 100%;
+        background: #dbe6d8;
+    }
+
+    .products-frame {
+        display: flex;
+        flex-direction: column;
+        padding: 0 100px;
+        width: 85%;
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .product-frame {
+        padding: 10px;
+        height: 200px;
+        width: 150px;
+    }
+
+        .product-frame:hover {
+            background: #dbe6d8;
+        }
+
+    .pagination-frame {
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .search-frame {
+        display: flex;
+        justify-content: center;
+        margin: 50px;
+        gap: 20px;
+    }
+
+    .search-bar {
+        width: 400px;
+        height: 50px;
+    }
+</style>
