@@ -18,6 +18,7 @@
 
     var checkedTypes = ViewBag.checkedTypes;
     var productName = ViewBag.productName;
+    var sortMethod = ViewBag.sortMethod;
 }
 
 <div class="main-frame">
@@ -44,13 +45,23 @@
         <form asp-action="Index" method="get" class="search-frame">
             <input name="productName" type="search" value="@productName" class="search-bar" />
             <input type="submit" value="Пошук" />
+            <div class="dropdown">
+                <button class="dropbtn">@sortMethod</button>
+                <div class="dropdown-content">
+                    <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, sortMethod = "priceDESC" })">Price DESC</a>
+                    <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, sortMethod = "priceASC" })">Price ASC</a>
+                    <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, sortMethod = "nameDESC" })">Name DESC</a>
+                    <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, sortMethod = "nameASC" })">Name ASC</a>
+                </div>
+            </div>
         </form>
+
         <div class="products-grid">
             @foreach (var item in Model.Items)
             {
                 <div class="product-frame">
                     <img src="@item.Images[0].Url" width="130" height="130" />
-                    <p>@item.Name</p>
+                    <p>@item.Name - @item.CategoryId</p>
                     <p>@item.Price ₴</p>
                 </div>
             }
@@ -58,19 +69,19 @@
         <div class="pagination-frame">
             @if (Model.PageNumber > 1)
             {
-                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = 1 })">&lt;&lt;</a>
-                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.PageNumber - 1 })">&lt;</a>
+                <a href="@Url.Action("Index", new { sortMethod = sortMethod, productName, categoryId = checkedTypes, page = 1 })">&lt;&lt;</a>
+                <a href="@Url.Action("Index", new { sortMethod = sortMethod, productName, categoryId = checkedTypes, page = Model.PageNumber - 1 })">&lt;</a>
             }
 
             @for (var i = startPage; i <= endPage; i++)
             {
-                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = i })" class="@(i == Model.PageNumber ? "active-page" : "")">@i</a>
+                <a href="@Url.Action("Index", new { sortMethod = sortMethod, productName, categoryId = checkedTypes, page = i })" class="@(i == Model.PageNumber ? "active-page" : "")">@i</a>
             }
 
             @if (Model.PageNumber < Model.TotalPages)
             {
-                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.PageNumber + 1 })">&gt;</a>
-                <a href="@Url.Action("Index", new { productName, categoryId = checkedTypes, page = Model.TotalPages })">&gt;&gt;</a>
+                <a href="@Url.Action("Index", new { sortMethod = sortMethod, productName, categoryId = checkedTypes, page = Model.PageNumber + 1 })">&gt;</a>
+                <a href="@Url.Action("Index", new { sortMethod = sortMethod, productName, categoryId = checkedTypes, page = Model.TotalPages })">&gt;&gt;</a>
             }
         </div>
     </div>
@@ -164,5 +175,47 @@
     .search-bar {
         width: 400px;
         height: 50px;
+    }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
     }
 </style>

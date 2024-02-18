@@ -53,13 +53,13 @@ namespace InternetShop.Repository
             return _context;
         }
 
-        public async Task<ICollection<Products>> GetProductsByCategoryAsync(ICollection<int> categoryId)
+        public async Task<ICollection<Products>> GetProductsByCategoryAsync(ICollection<Products> products, ICollection<int> categoryId)
         {
 
             var sortedData= new List<Products>();
             foreach (var category in categoryId)
             {
-                var data = _context.Where(d => d.CategoryId == category.ToString()).ToList();
+                var data = products.Where(d => d.CategoryId == category.ToString()).ToList();
                 sortedData.AddRange(data);
             }
 

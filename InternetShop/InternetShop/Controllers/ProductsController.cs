@@ -15,22 +15,52 @@ namespace InternetShop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index(ICollection<int> categoryId, string productName, int page = 1)
+        public async Task<IActionResult> Index(ICollection<int> categoryId, string productName,string sortMethod = "def", int page = 1)
         {
             ICollection<Products> model = await _productsRepository.GetAllProductsAsync();
 
             if (productName != null)
             {
-                model = await _productsRepository.SearchAsync(model, productName);
+                model = model.Where(p => p.Name == productName).ToList();
                 ViewBag.productName = productName;
             }
 
             if(categoryId.Count() != 0)
             {
-                model = await _productsRepository.GetProductsByCategoryAsync(categoryId);
+                var sortedData = new List<Products>();
+                foreach (var category in categoryId)
+                {
+                    var data = model.Where(d => d.CategoryId == category.ToString()).ToList();
+                    sortedData.AddRange(data);
+                }
+
+                model = sortedData;
                 ViewBag.checkedTypes = categoryId;
             }
 
+            switch (sortMethod)
+            {
+                case "priceDESC":
+                    model = model.OrderByDescending(m => m.Price).ToList();
+                    break;
+
+                case "priceASC":
+                    model = model.OrderBy(m => m.Price).ToList();
+                    break;
+
+                case "nameDESC":
+                    model = model.OrderByDescending(m => m.Name).ToList();
+                    break;
+                case "nameASC":
+                    model = model.OrderBy(m => m.Name).ToList();
+                    break;
+
+                default:
+
+                    break;
+            }
+
+            ViewBag.sortMethod = sortMethod;
             var pagination = await _productsRepository.PaginationProductsAsync(page, model);
             return View(pagination);
         }
