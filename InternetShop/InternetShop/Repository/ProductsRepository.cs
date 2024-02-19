@@ -1,4 +1,5 @@
-﻿using InternetShop.Interface;
+﻿using InternetShop.Data;
+using InternetShop.Interface;
 using InternetShop.Models;
 using InternetShop.ViewModels;
 using Microsoft.EntityFrameworkCore;
@@ -8,49 +9,16 @@ namespace InternetShop.Repository
 {
     public class ProductsRepository : IProductsRepository
     {
-        private readonly List<Products> _context;
-        public ProductsRepository()
+        private readonly AppDbContext _context;
+
+        public ProductsRepository(AppDbContext context)
         {
-            var data = new List<Products>();
-
-            Random rnd = new Random();
-
-            List<Categories> categories = new List<Categories>();
-
-            for (int i = 1; i < 6; i++)
-            {
-                categories.Add(new Categories
-                {
-                    Id = i,
-                    Name = "Category: " + i.ToString(),
-                });
-            }
-
-            for (int i = 0; i < 200; i++)
-            {
-                data.Add(new Products
-                {
-                    Id = i,
-                    Name = rnd.Next(1,10).ToString(),
-                    UserId = i,
-                    Price = (decimal)rnd.Next(10000, 20000) / 100,
-                    Images = new List<Images>()
-                    {
-                        new Images()
-                        {
-                            Url = "https://cdn1.vectorstock.com/i/1000x1000/81/75/temporary-rubber-stamp-vector-17998175.jpg"
-                        }
-                    },
-                    CategoryId = categories[rnd.Next(0, 5)].Id.ToString(),
-                });
-            }
-
-            _context = data;
+            _context = context;
         }
 
         public async Task<ICollection<Products>> GetAllProductsAsync()
         {
-            return _context;
+            return await _context.Products.ToListAsync();
         }
 
 
@@ -58,18 +26,7 @@ namespace InternetShop.Repository
         {
             int pageSize = 18;
 
-            Random rnd = new Random();
-
-            List<Categories> categories = new List<Categories>();
-
-            for (int i = 1; i < 6; i++)
-            {
-                categories.Add(new Categories
-                {
-                    Id = i,
-                    Name = "Category: " + i.ToString(),
-                });
-            }
+            var categories = await _context.Categories.ToListAsync();
 
             var totalCount = products.Count();
             var items = products
@@ -86,6 +43,7 @@ namespace InternetShop.Repository
                 TotalPages = totalPages,
                 Categories = categories,
             };
+
             return viewModel;
         }
     }

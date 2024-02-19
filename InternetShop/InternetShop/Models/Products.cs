@@ -1,13 +1,21 @@
-﻿namespace InternetShop.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+
+namespace InternetShop.Models
 {
     public class Products
     {
+        [Key]
         public int Id { get; set; }
-        public string? CategoryId { get; set; }
-        public int UserId { get; set; }
-        public string? Name {  get; set; }
-        public List<Images> Images { get; set; }
-        public string? Description { get; set; }
+        public int CategoryId { get; set; }
+
+        [ForeignKey("CategoryId")]
+        public Categories Categories { get; set; }
+        public string Name {  get; set; }
+        public virtual List<Images> Images { get; set; }
+        public string Description { get; set; }
         public decimal Price { get; set; }
+        public virtual List<UsersProducts> UsersProducts { get; set; }
     }
 }

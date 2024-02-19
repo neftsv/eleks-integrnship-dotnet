@@ -30,7 +30,7 @@ namespace InternetShop.Controllers
                 var sortedData = new List<Products>();
                 foreach (var category in categoryId)
                 {
-                    var data = model.Where(d => d.CategoryId == category.ToString()).ToList();
+                    var data = model.Where(d => d.CategoryId == category).ToList();
                     sortedData.AddRange(data);
                 }
 

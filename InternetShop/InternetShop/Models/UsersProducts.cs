@@ -1,9 +1,12 @@
-﻿namespace InternetShop.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InternetShop.Models
 {
     public class UsersProducts
     {
-        public int Id { get; set; }
-        public int UserId {  get; set; }
+        public string UserId {  get; set; }
         public int ProductId { get; set; }
+        public Users Users { get; set; }
+        public Products Products { get; set; }
     }
 }
