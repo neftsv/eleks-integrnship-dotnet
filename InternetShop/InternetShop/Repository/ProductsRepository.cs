@@ -53,18 +53,6 @@ namespace InternetShop.Repository
             return _context;
         }
 
-        public async Task<ICollection<Products>> GetProductsByCategoryAsync(ICollection<Products> products, ICollection<int> categoryId)
-        {
-
-            var sortedData= new List<Products>();
-            foreach (var category in categoryId)
-            {
-                var data = products.Where(d => d.CategoryId == category.ToString()).ToList();
-                sortedData.AddRange(data);
-            }
-
-            return sortedData;
-        }
 
         public async Task<ProductsViewModel> PaginationProductsAsync(int page, ICollection<Products> products)
         {
@@ -99,11 +87,6 @@ namespace InternetShop.Repository
                 Categories = categories,
             };
             return viewModel;
-        }
-
-        public async Task<ICollection<Products>> SearchAsync(ICollection<Products> products, string productName)
-        {
-            return products.Where(p => p.Name == productName).ToList();
         }
     }
 }

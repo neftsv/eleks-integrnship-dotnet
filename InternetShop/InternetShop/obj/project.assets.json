@@ -4266,11 +4266,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
+      "projectUniqueName": "D:\\Programs\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
       "projectName": "InternetShop",
-      "projectPath": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
+      "projectPath": "D:\\Programs\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
       "packagesPath": "C:\\Users\\marty\\.nuget\\packages\\",
-      "outputPath": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\obj\\",
+      "outputPath": "D:\\Programs\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
