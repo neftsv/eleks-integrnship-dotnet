@@ -1,6 +1,8 @@
-﻿namespace InternetShop.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace InternetShop.Models
 {
-    public class Users
+    public class Users : IdentityUser
     {
         public int Id { get; set; }
         public int RoleId { get; set; } = 0;
