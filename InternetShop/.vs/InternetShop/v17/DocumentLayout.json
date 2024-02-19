@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\igor7\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3058C919-B889-457B-9B64-C4A1544A9B16}|InternetShop\\InternetShop.csproj|c:\\users\\igor7\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\github\\eleks-integrnship-dotnet\\internetshop\\internetshop\\views\\users\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3058C919-B889-457B-9B64-C4A1544A9B16}|InternetShop\\InternetShop.csproj|solutionrelative:internetshop\\views\\users\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3058C919-B889-457B-9B64-C4A1544A9B16}|InternetShop\\InternetShop.csproj|c:\\users\\igor7\\onedrive\\\u0434\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\github\\eleks-integrnship-dotnet\\internetshop\\internetshop\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3058C919-B889-457B-9B64-C4A1544A9B16}|InternetShop\\InternetShop.csproj|solutionrelative:internetshop\\views\\users\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\igor7\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\Views\\Users\\Create.cshtml",
+              "RelativeDocumentMoniker": "InternetShop\\Views\\Users\\Create.cshtml",
+              "ToolTip": "C:\\Users\\igor7\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\Views\\Users\\Create.cshtml",
+              "RelativeToolTip": "InternetShop\\Views\\Users\\Create.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-02-19T00:26:51.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\igor7\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\Views\\Users\\Edit.cshtml",
+              "RelativeDocumentMoniker": "InternetShop\\Views\\Users\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\igor7\\OneDrive\\\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u0438\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\Views\\Users\\Edit.cshtml",
+              "RelativeToolTip": "InternetShop\\Views\\Users\\Edit.cshtml",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-02-19T00:24:16.243Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

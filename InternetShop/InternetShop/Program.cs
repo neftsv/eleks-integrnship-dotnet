@@ -1,7 +1,14 @@
+using InternetShop.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Work in the database is related to user registration
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("InternetShopCRMcnn")));
 
 var app = builder.Build();
 

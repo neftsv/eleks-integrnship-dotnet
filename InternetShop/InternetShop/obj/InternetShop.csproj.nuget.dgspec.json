@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj": {}
+    "C:\\Users\\igor7\\OneDrive\\Документи\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj": {}
   },
   "projects": {
-    "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj": {
+    "C:\\Users\\igor7\\OneDrive\\Документи\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
+        "projectUniqueName": "C:\\Users\\igor7\\OneDrive\\Документи\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
         "projectName": "InternetShop",
-        "projectPath": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
-        "packagesPath": "C:\\Users\\marty\\.nuget\\packages\\",
-        "outputPath": "D:\\Програми\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\obj\\",
+        "projectPath": "C:\\Users\\igor7\\OneDrive\\Документи\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\InternetShop.csproj",
+        "packagesPath": "C:\\Users\\igor7\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\igor7\\OneDrive\\Документи\\GitHub\\eleks-integrnship-dotnet\\InternetShop\\InternetShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\marty\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\igor7\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,6 +38,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -72,6 +76,10 @@
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
               "version": "[8.0.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[8.0.1, )"
             }
           },
           "imports": [
@@ -93,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
