@@ -1,0 +1,64 @@
+﻿@using InternetShop.ViewModels;
+@model LoginVM
+
+@{
+	ViewData["Title"] = "Login";
+}
+
+<style>
+    .card {
+        background-color: #d9e5d6;
+        border-radius: 20px !important;
+    }
+
+    .or {
+        font-weight: bold;
+        margin-top: 10px; 
+    }
+
+    .btn-login, .btn-register {
+        border-radius: 20px;
+        font-weight: bold; /* Added to make the text bold */
+    }
+</style>
+
+<div class="row d-flex align-items-center justify-content-center">
+	<div class="col-md-3 card p-3">
+		<form asp-action="Login" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="mb-3 text-center">
+				<input type="submit" value="Sigh in" class="btn btn-primary btn-lg btn-block btn-login" />
+			</div>
+			<div class="mb-1 or">
+				<div class="text-center font-weight-bold">Or</div>
+			</div>
+			<div class="mb-1">
+				<label asp-for="Email" class="control-label"></label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="mb-1">
+				<label asp-for="Password" class="control-label"></label>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<div class="mb-1 form-check">
+				<label class="form-check-label">
+					<input asp-for="RememberMe" class="form-check-input" /> @Html.DisplayNameFor(a => a.RememberMe)
+				</label>
+			</div>
+			<div class="row">
+				<div class="col-12 text-center mb-3">
+					<a asp-action="Register" class="btn btn-secondary btn-lg btn-block btn-register">Register</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+@section Scripts{
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
