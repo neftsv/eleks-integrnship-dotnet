@@ -55,46 +55,70 @@ namespace InternetShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,RoleId,Email,Password,Surname,Name,Patronimic,PhoneNumber")] Users users)
+        public async Task<IActionResult> Create(IFormCollection form)
         {
-            // Checking that all fields are filled
-            if (string.IsNullOrWhiteSpace(users.Name) ||
-                string.IsNullOrWhiteSpace(users.Surname) ||
-                string.IsNullOrWhiteSpace(users.Patronimic) ||
-                string.IsNullOrWhiteSpace(users.Email) ||
-                string.IsNullOrWhiteSpace(users.PhoneNumber) ||
-                string.IsNullOrWhiteSpace(users.Password))
+            var users = new Users();
+
+            // Get data from the form
+            users.Name = form["Name"];
+            users.Surname = form["Surname"];
+            users.Patronimic = form["Patronimic"];
+            users.Email = form["Email"];
+            users.PhoneNumber = form["PhoneNumber"];
+            users.Password = form["Password"];
+
+            string passwordConfirmation = form["passwordConfirmation"]!;
+
+            // Checking if the password and confirmation are not null or empty
+            if (string.IsNullOrWhiteSpace(users.Password) || string.IsNullOrWhiteSpace(passwordConfirmation))
             {
                 ModelState.AddModelError("", "Please fill in all fields");
             }
             else
             {
-                // Checking whether a user with such surname, first name and patronymic already exists in the database
-                if (_context.Users.Any(u => u.Name == users.Name && u.Surname == users.Surname && u.Patronimic == users.Patronimic))
+                // Checking that all fields are filled
+                if (string.IsNullOrWhiteSpace(users.Name) ||
+                    string.IsNullOrWhiteSpace(users.Surname) ||
+                    string.IsNullOrWhiteSpace(users.Patronimic) ||
+                    string.IsNullOrWhiteSpace(users.Email) ||
+                    string.IsNullOrWhiteSpace(users.PhoneNumber))
                 {
-                    ModelState.AddModelError("", "Such a user is already registered");
+                    ModelState.AddModelError("", "Please fill in all fields");
                 }
+                else
+                {
+                    // Checking whether a user with such surname, first name and patronymic already exists in the database
+                    if (_context.Users.Any(u => u.Name == users.Name && u.Surname == users.Surname && u.Patronimic == users.Patronimic))
+                    {
+                        ModelState.AddModelError("", "Such a user is already registered");
+                    }
 
-                // Checking if the email entered by the user is valid
-                if (users.Email != null && !Regex.IsMatch(users.Email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
-                {
-                    ModelState.AddModelError("Email", "Please enter a valid email");
-                }
+                    // Checking if the email entered by the user is valid
+                    if (users.Email != null && !Regex.IsMatch(users.Email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
+                    {
+                        ModelState.AddModelError("Email", "Please enter a valid email");
+                    }
 
-                // Checking whether the phone number entered by the user is valid
-                if (users.PhoneNumber != null && !Regex.IsMatch(users.PhoneNumber, @"^\+?[0-9]{3}-?[0-9]{6,12}$"))
-                {
-                    ModelState.AddModelError("PhoneNumber", "Please enter a valid phone number");
-                }
+                    // Checking whether the phone number entered by the user is valid
+                    if (users.PhoneNumber != null && !Regex.IsMatch(users.PhoneNumber, @"^\+?[0-9]{3}-?[0-9]{6,12}$"))
+                    {
+                        ModelState.AddModelError("PhoneNumber", "Please enter a valid phone number");
+                    }
 
-                // Checking the password for compliance with the requirements
-                if (string.IsNullOrEmpty(users.Password) || users.Password.Length < 6)
-                {
-                    ModelState.AddModelError("Password", "The password must contain at least 6 characters");
-                }
-                else if (!Regex.IsMatch(users.Password, @"^[^\s~!@#\$%\^&\*\(\)_\+\-=\\/\{\}\[\]\.,\?\<\>:;]*$"))
-                {
-                    ModelState.AddModelError("Password", "The password must not contain spaces or symbols ~! @#$%^&*()-_+=/{}[].,? <>:;");
+                    // Checking the password for compliance with the requirements
+                    if (string.IsNullOrEmpty(users.Password) || users.Password.Length < 8)
+                    {
+                        ModelState.AddModelError("Password", "Password must contain at least 8 characters");
+                    }
+                    else if (!Regex.IsMatch(users.Password, @"^(?=.*[A-Z].*[A-Z])(?=.*[a-z].*[a-z])(?=.*\d.*\d)[A-Za-z\d@$!%*?&]+$"))
+                    {
+                        ModelState.AddModelError("Password", "\r\nPassword must contain at least 2 uppercase letters, 2 lowercase letters, and 2 numbers, and must not contain prohibited characters");
+                    }
+                    // Checking whether the password and its confirmation match
+                    if (users.Password != passwordConfirmation)
+                    {
+                        ModelState.AddModelError("Password", "Password and confirmation do not match");
+                    }
                 }
             }
 
