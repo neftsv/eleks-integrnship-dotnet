@@ -70,12 +70,34 @@ body {
     font-weight: bold;
     color: #ff9b42;
 }
-.form-control {
+.form-control, 
+.input-group{
     font-weight: bold;
     width: 80%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 40px;
 }
 .form-control:focus {
    border-color: #ff9b42;
    box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
+}
+
+.input-group {
+    padding-right: 0px;
+}
+
+.form-check-input:checked {
+    background-color: #ff9b42 !important;
+    border-color: #ff9b42 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25) !important;
+}
+
+.form-check-input:focus {
+    border-color: #bfbfbf; 
+    box-shadow: none;
+}
+
+.password-group .input-group-text {
+    width: 40px;
 }
