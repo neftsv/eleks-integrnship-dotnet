@@ -1,27 +1,26 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
-/* Registration page*/
 .rounded.p-4 {
     background-color: #d9e5d6;
     border-radius: 20px !important;
@@ -42,17 +41,17 @@ body {
     border: 3px solid transparent;
 }
 
-.btn-register:hover,
-.btn-register:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: #fa8b28;
-    color: #ffffff;
-}
+    .btn-register:hover,
+    .btn-register:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #fa8b28;
+        color: #ffffff;
+    }
 
-.btn-register:active {
-    color: #F1F0EA;
-}
+    .btn-register:active {
+        color: #F1F0EA;
+    }
 
 #registration-heading {
     text-align: center;
@@ -66,19 +65,48 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+
 #backpage a {
     font-weight: bold;
     color: #ff9b42;
 }
-.form-control {
+
+.form-control,
+.input-group {
     font-weight: bold;
     width: 80%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 40px;
 }
-.form-control:focus {
-   border-color: #ff9b42;
-   box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
+
+    .form-control:focus {
+        border-color: #ff9b42;
+        box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
+    }
+
+.input-group {
+    padding-right: 0px;
 }
+
+.form-check-input:checked {
+    background-color: #ff9b42 !important;
+    border-color: #ff9b42 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25) !important;
+}
+
+.form-check-input:focus {
+    border-color: #bfbfbf;
+    box-shadow: none;
+}
+
+.password-group .input-group-text {
+    width: 40px;
+}
+
+
+
+
 .card {
     background-color: #d9e5d6;
     border-radius: 20px !important;
@@ -99,6 +127,7 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.or-login {
+    border-radius: 20px;
+    background-color: orange;
 
-.or-login .btn {
-    font-weight: bold;
