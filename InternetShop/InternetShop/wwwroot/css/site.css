@@ -102,8 +102,19 @@ body {
     width: 40px;
 }
 
-/* Authorization */
+.first-row-userdb {
+    background-color: #fa8b28;
+    color: white;
+    text-align: center;
+    border: 1px solid #ff9b42;
+}
 
+.form-group-edit, 
+h-userdb {
+    font-weight: bold;
+}
+
+/* Authorization */
 .card {
     background-color: #d9e5d6;
     border-radius: 20px !important;
