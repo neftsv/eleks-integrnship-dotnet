@@ -101,3 +101,31 @@ body {
 .password-group .input-group-text {
     width: 40px;
 }
+
+/* Authorization */
+
+.card {
+    background-color: #d9e5d6;
+    border-radius: 20px !important;
+}
+
+.or {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.or-register {
+    border-radius: 20px;
+    background-color: orange;
+}
+
+.or-button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.or-login {
+    border-radius: 20px;
+    background-color: orange;
+}
