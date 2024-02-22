@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Logout";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 rounded p-4">
+            <h4 class="text-center mb-3" id="logout-heading">Logout</h4>
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <p>Are you sure you want to log out?</p>
+                <div class="form-group mb-1">
+                    <input type="submit" value="Logout" class="btn btn-block btn-logout" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

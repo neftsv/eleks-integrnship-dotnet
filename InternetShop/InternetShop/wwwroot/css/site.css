@@ -1,5 +1,10 @@
-html {
-  font-size: 14px;
+@import url('https://fonts.googleapis.com/css2?family=Kulim+Park:wght@700&display=swap');
+
+body {
+    font-family: "Kulim Park", sans-serif !important;
+    font-weight: 700;
+    font-style: normal;
+    height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -19,4 +24,162 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+/* Registration page*/
+.rounded.p-4 {
+    background-color: #d9e5d6;
+    border-radius: 20px !important;
+    font-family: 'Arial', sans-serif;
+}
+
+.btn-register {
+    background-color: #ff9b42;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    width: 120px;
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: 3px solid transparent;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: #fa8b28;
+    color: #ffffff;
+}
+
+.btn-register:active {
+    color: #F1F0EA;
+}
+
+#registration-heading {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    font-size: 24px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff9b42;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+#backpage a {
+    font-weight: bold;
+    color: #ff9b42;
+}
+.form-control, 
+.input-group{
+    font-weight: bold;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 40px;
+}
+.form-control:focus {
+   border-color: #ff9b42;
+   box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
+}
+
+.input-group {
+    padding-right: 0px;
+}
+
+.form-check-input:checked {
+    background-color: #ff9b42 !important;
+    border-color: #ff9b42 !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25) !important;
+}
+
+.form-check-input:focus {
+    border-color: #bfbfbf; 
+    box-shadow: none;
+}
+
+.password-group .input-group-text {
+    width: 40px;
+}
+
+.category {
+    background-color: #D9E5D6;
+}
+
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: auto; /* Stay on top */
+    top: 56px; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+input[type="text"] {
+    /* Define your styles here */
+    width: 500px; /* Example width */
+    height: 30px; /* Example height */
+    padding: 5px; /* Example padding */
+    border: 2px solid #0FA3B1; /* Example border */
+    border-radius: 30px; /* Example border radius */
+    background-color: #f2f2f2; /* Example background color */
+    font-size: 16px; /* Example font size */
+    color: #333; /* Example text color */
+}
+
+.padding_top {
+    padding-top: 20px;
+
+
+.first-row-userdb {
+    background-color: #fa8b28;
+    color: white;
+    text-align: center;
+    border: 1px solid #ff9b42;
+}
+
+.form-group-edit, 
+h-userdb {
+    font-weight: bold;
+}
+
+/* Authorization */
+.card {
+    background-color: #d9e5d6;
+    border-radius: 20px !important;
+}
+
+.or {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.or-register {
+    border-radius: 20px;
+    background-color: orange;
+}
+
+.or-button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.or-login {
+    border-radius: 20px;
+    background-color: orange;
+
 }

@@ -1,6 +1,7 @@
 using InternetShop.Data;
 using InternetShop.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 builder.Services.AddIdentity<Users, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+// Add authentication services
+
+builder.Services.AddAuthentication(options =>
+	{
+		options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+		options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+	})
+	.AddCookie(options =>
+	{
+		options.Cookie.Name = "YourAppCookieName";
+	});
 
 var app = builder.Build();
 
