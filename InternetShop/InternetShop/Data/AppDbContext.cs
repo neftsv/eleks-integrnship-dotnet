@@ -38,17 +38,6 @@ namespace InternetShop.Data
                 .WithOne(s => s.Users)
                 .HasForeignKey<Carts>();
 
-            //modelBuilder.Entity<UsersProducts>()
-            //      .HasKey(pc => new { pc.UserId, pc.ProductId });
-            //modelBuilder.Entity<UsersProducts>()
-            //        .HasOne(p => p.Products)
-            //        .WithMany(pc => pc.UsersProducts)
-            //        .HasForeignKey(p => p.ProductId);
-            //modelBuilder.Entity<UsersProducts>()
-            //        .HasOne(p => p.Users)
-            //        .WithMany(pc => pc.UsersProducts)
-            //        .HasForeignKey(c => c.UserId);
-
             base.OnModelCreating(modelBuilder);
         }
     }
