@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace InternetShop.Models
 {
@@ -12,10 +11,11 @@ namespace InternetShop.Models
 
         [ForeignKey("CategoryId")]
         public Categories Categories { get; set; }
-        public string Name {  get; set; }
+        public string Name { get; set; }
         public virtual List<Images> Images { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public virtual List<UsersProducts> UsersProducts { get; set; }
+        public virtual List<OredersProducts> OredersProducts { get; set; }
     }
 }

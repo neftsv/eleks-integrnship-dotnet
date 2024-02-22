@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
-using System;
+﻿using InternetShop.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using InternetShop.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Drawing;
 
 namespace InternetShop.Data
 {
@@ -13,9 +13,14 @@ namespace InternetShop.Data
 
         }
 
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Carts> Carts { get; set; }
+        public DbSet<CartsProducts> CartsProducts { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Images> Images { get; set; }
+        public DbSet<Orders> Orders { get; set; }
+        public DbSet<Posts> Posts { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<Users> Users { get; set; }
         public DbSet<UsersProducts> UsersProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,17 +28,15 @@ namespace InternetShop.Data
             modelBuilder.Entity<Products>()
                 .Property(e => e.Price)
                 .HasColumnType("decimal(10,2)");
+            
+            modelBuilder.Entity<Orders>()
+                .Property(e => e.TotalPrice)
+                .HasColumnType("decimal(10,2)");
 
-            modelBuilder.Entity<UsersProducts>()
-                  .HasKey(pc => new { pc.UserId, pc.ProductId });
-            modelBuilder.Entity<UsersProducts>()
-                    .HasOne(p => p.Products)
-                    .WithMany(pc => pc.UsersProducts)
-                    .HasForeignKey(p => p.ProductId);
-            modelBuilder.Entity<UsersProducts>()
-                    .HasOne(p => p.Users)
-                    .WithMany(pc => pc.UsersProducts)
-                    .HasForeignKey(c => c.UserId);
+            modelBuilder.Entity<Users>()
+                .HasOne(t => t.Carts)
+                .WithOne(s => s.Users)
+                .HasForeignKey<Carts>();
 
             base.OnModelCreating(modelBuilder);
         }

@@ -51,6 +51,7 @@ namespace InternetShop.Controllers
                 case "nameDESC":
                     model = model.OrderByDescending(m => m.Name).ToList();
                     break;
+
                 case "nameASC":
                     model = model.OrderBy(m => m.Name).ToList();
                     break;
@@ -61,6 +62,7 @@ namespace InternetShop.Controllers
             }
 
             ViewBag.sortMethod = sortMethod;
+
             var pagination = await _productsRepository.PaginationProductsAsync(page, model);
             return View(pagination);
         }
