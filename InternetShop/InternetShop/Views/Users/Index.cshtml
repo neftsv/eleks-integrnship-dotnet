@@ -4,14 +4,15 @@
     ViewData["Title"] = "Database";
 }
 
-<h1>Index</h1>
+<h1 class="h-userdb">Database</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-primary btn-sm ml-auto" asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<div class="table-responsive">
+<table class="table table-striped">
     <thead>
-        <tr>
+        <tr class="first-row-userdb">
             <th>
                 @Html.DisplayNameFor(model => model.RoleId)
             </th>
@@ -37,8 +38,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+            @foreach (var item in Model)
+            {
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.RoleId)
             </td>
@@ -60,12 +62,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="d-flex">
+                <a class="btn btn-primary btn-sm mr-1" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-success btn-sm mr-1" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+            }
     </tbody>
 </table>
+</div>

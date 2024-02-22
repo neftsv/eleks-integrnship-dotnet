@@ -106,6 +106,7 @@ body {
 .password-group .input-group-text {
     width: 40px;
 }
+
 .category {
     background-color: #D9E5D6;
 }
@@ -141,4 +142,44 @@ input[type="text"] {
 
 .padding_top {
     padding-top: 20px;
+
+
+.first-row-userdb {
+    background-color: #fa8b28;
+    color: white;
+    text-align: center;
+    border: 1px solid #ff9b42;
+}
+
+.form-group-edit, 
+h-userdb {
+    font-weight: bold;
+}
+
+/* Authorization */
+.card {
+    background-color: #d9e5d6;
+    border-radius: 20px !important;
+}
+
+.or {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.or-register {
+    border-radius: 20px;
+    background-color: orange;
+}
+
+.or-button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.or-login {
+    border-radius: 20px;
+    background-color: orange;
+
 }
