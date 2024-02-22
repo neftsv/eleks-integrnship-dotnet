@@ -1,13 +1,16 @@
 using InternetShop.Data;
+using InternetShop.Interface;
 using InternetShop.Models;
+using InternetShop.Repository;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
