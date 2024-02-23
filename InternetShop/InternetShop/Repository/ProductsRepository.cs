@@ -9,9 +9,9 @@ namespace InternetShop.Repository
 {
     public class ProductsRepository : IProductsRepository
     {
-        private readonly AppDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ProductsRepository(AppDbContext context)
+        public ProductsRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace InternetShop.Repository
                 Id = p.Id,
                 Name = p.Name,
                 Images = p.Images,
-                OredersProducts = p.OredersProducts,
+                OrdersProducts = p.OrdersProducts,
                 UsersProducts = p.UsersProducts,
             })
             .ToListAsync();

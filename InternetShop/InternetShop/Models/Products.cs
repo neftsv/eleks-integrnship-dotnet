@@ -16,6 +16,6 @@ namespace InternetShop.Models
         public string Description { get; set; }
         public decimal Price { get; set; }
         public virtual List<UsersProducts> UsersProducts { get; set; }
-        public virtual List<OredersProducts> OredersProducts { get; set; }
+        public virtual List<OrdersProducts> OrdersProducts { get; set; }
     }
 }

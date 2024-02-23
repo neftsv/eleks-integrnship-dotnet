@@ -7,11 +7,11 @@ namespace InternetShop.Models
     {
         [Key]
         public int Id { get; set; }
-        public string UserId {  get; set; }
+        public int UserId {  get; set; }
 
         [ForeignKey("UserId")]
         public Users Users { get; set; }
-        public virtual List<OredersProducts> OredersProducts {  get; set; }
+        public virtual List<OrdersProducts> OrdersProducts {  get; set; }
         public decimal TotalPrice {  get; set; }
         public DateTime Date {  get; set; }
     }

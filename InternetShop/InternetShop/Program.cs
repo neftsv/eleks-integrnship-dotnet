@@ -12,12 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-builder.Services.AddIdentity<Users, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>();
+// Work in the database is related to user registration
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("InternetShopCRMcnn")));
 
 // Add authentication services
 

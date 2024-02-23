@@ -47,17 +47,17 @@ body {
     border: 3px solid transparent;
 }
 
-.btn-register:hover,
-.btn-register:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: #fa8b28;
-    color: #ffffff;
-}
+    .btn-register:hover,
+    .btn-register:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #fa8b28;
+        color: #ffffff;
+    }
 
-.btn-register:active {
-    color: #F1F0EA;
-}
+    .btn-register:active {
+        color: #F1F0EA;
+    }
 
 #registration-heading {
     text-align: center;
@@ -71,22 +71,25 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+
 #backpage a {
     font-weight: bold;
     color: #ff9b42;
 }
-.form-control, 
-.input-group{
+
+.form-control,
+.input-group {
     font-weight: bold;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     padding-right: 40px;
 }
-.form-control:focus {
-   border-color: #ff9b42;
-   box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
-}
+
+    .form-control:focus {
+        border-color: #ff9b42;
+        box-shadow: 0 0 0 0.2rem rgba(255, 155, 66, 0.25);
+    }
 
 .input-group {
     padding-right: 0px;
@@ -99,7 +102,7 @@ body {
 }
 
 .form-check-input:focus {
-    border-color: #bfbfbf; 
+    border-color: #bfbfbf;
     box-shadow: none;
 }
 
@@ -107,56 +110,8 @@ body {
     width: 40px;
 }
 
-.category {
-    background-color: #D9E5D6;
-}
-
-.sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: auto; /* Stay on top */
-    top: 56px; /* Stay at the top */
-    left: 0;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-    padding-left: 20px;
-}
-
-.main {
-    margin-left: 160px; /* Same as the width of the sidenav */
-    padding: 0px 10px;
-}
-
-input[type="text"] {
-    /* Define your styles here */
-    width: 500px; /* Example width */
-    height: 30px; /* Example height */
-    padding: 5px; /* Example padding */
-    border: 2px solid #0FA3B1; /* Example border */
-    border-radius: 30px; /* Example border radius */
-    background-color: #f2f2f2; /* Example background color */
-    font-size: 16px; /* Example font size */
-    color: #333; /* Example text color */
-}
-
-.padding_top {
-    padding-top: 20px;
-
-
-.first-row-userdb {
-    background-color: #fa8b28;
-    color: white;
-    text-align: center;
-    border: 1px solid #ff9b42;
-}
-
-.form-group-edit, 
-h-userdb {
-    font-weight: bold;
-}
-
 /* Authorization */
+
 .card {
     background-color: #d9e5d6;
     border-radius: 20px !important;
@@ -181,5 +136,45 @@ h-userdb {
 .or-login {
     border-radius: 20px;
     background-color: orange;
+}
 
+/* Products */
+
+.category {
+    background-color: #D9E5D6;
+}
+
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 160px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: auto; /* Stay on top */
+    top: 56px; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+}
+
+
+
+.padding_top {
+    padding-top: 20px;
+}
+    .first-row-userdb
+{
+    background-color: #fa8b28;
+    color: white;
+    text-align: center;
+    border: 1px solid #ff9b42;
+}
+
+.form-group-edit,
+h-userdb {
+    font-weight: bold;
 }

@@ -7,6 +7,9 @@ namespace InternetShop.Models
     {
         [Key]
         public int Id { get; set; }
-        public Users Users { get; set; }
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public Users User { get; set; }
     }
 }

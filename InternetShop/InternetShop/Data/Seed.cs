@@ -1,5 +1,4 @@
 ﻿using InternetShop.Models;
-using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
 using System.Net;
 
@@ -11,22 +10,17 @@ namespace InternetShop.Data
         {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-
-                if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-                if (!await roleManager.RoleExistsAsync(UserRoles.Moderator))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.Moderator));
      
-                var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
+                var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
 
                 context.Database.EnsureCreated();
 
                 if (!context.Users.Any())
                 {
-                    var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<Users>>();
+                    var userRole = new Roles { Name = UserRoles.User };
+                    var adminRole = new Roles { Name = UserRoles.Admin };
+                    var moderatorRole = new Roles { Name = UserRoles.Moderator };
+                    await context.AddRangeAsync(userRole, adminRole, moderatorRole);
 
                     var electronics = new Categories { Name = "Електроніка" };
                     var householdGoods = new Categories { Name = "Побутові товари" };
@@ -34,7 +28,7 @@ namespace InternetShop.Data
                     var personalCare = new Categories { Name = "Особиста гігієна" };
                     var officeFurniture = new Categories { Name = "Офісні меблі" };
                     var photoAndVideoTechnology = new Categories { Name = "Фото та відео техніка" };
-
+                    
                     await context.AddRangeAsync(electronics,
                         householdGoods,
                         householdAppliances,
@@ -44,8 +38,10 @@ namespace InternetShop.Data
 
                     var user1 = new Users
                     {
-                        UserName = "fakeMail@mail.com",
                         Email = "fakeMail@mail.com",
+                        Password = "11fakeMMailmailcom",
+                        RoleId = userRole.Id,
+                        Roles = userRole,
                         PhoneNumber = "1234567890",
                         Surname = "UserSurname",
                         Name = "UserName",
@@ -150,8 +146,7 @@ namespace InternetShop.Data
                         }
                     };
 
-                    await userManager.CreateAsync(user1, "1fakeMail@mail.com");
-                    await userManager.AddToRoleAsync(user1, UserRoles.User);
+                    await context.AddAsync(user1);
 
                     var product1 = new Products
                     {
@@ -187,8 +182,10 @@ namespace InternetShop.Data
 
                     var user2 = new Users
                     {
-                        UserName = "fakeMail2@mail.com",
                         Email = "fakeMail2@mail.com",
+                        Password = "22fakeMMailmailcom",
+                        RoleId = userRole.Id,
+                        Roles = userRole,
                         PhoneNumber = "9638520741",
                         Surname = "User2Surname",
                         Name = "User2Name",
@@ -293,8 +290,7 @@ namespace InternetShop.Data
                         },
                     };
 
-                    await userManager.CreateAsync(user2, "fakeMail2@mail.com");
-                    await userManager.AddToRoleAsync(user2, UserRoles.User);
+                    await context.AddAsync(user2);
 
                     var carProduct = new CartsProducts
                     {
@@ -302,14 +298,14 @@ namespace InternetShop.Data
                         Products = product1,
                         Carts = new Carts
                         {
-                            Users = user2,
+                            User = user1,
                         },
                         Quantity = 1,
                     };
                     
                     context.Add(carProduct);
 
-                    var order = new OredersProducts
+                    var order = new OrdersProducts
                     {
                         ProductId = product1.Id,
                         Products = product1,
@@ -327,28 +323,30 @@ namespace InternetShop.Data
 
                     var admin = new Users
                     {
-                        UserName = "fakeAdminMail@mail.com",
                         Email = "fakeAdminMail@mail.com",
+                        Password = "44fakeMMailmailcom",
+                        RoleId = adminRole.Id,
+                        Roles = adminRole,
                         PhoneNumber = "0987654321",
                         Surname = "AdminSurname",
                         Name = "AdminName",
                         Patronimic = "AdminPatronimic",
                     };
-                    await userManager.CreateAsync(admin, "1fakeAdminMail@mail.com");
-                    await userManager.AddToRoleAsync(admin, UserRoles.Admin);
+                    await context.AddAsync(admin);
 
 
                     var moderator = new Users
                     {
-                        UserName = "fakeModeratorMail@mail.com",
                         Email = "fakeModeratorMail@mail.com",
+                        Password = "33fakeMMailmailcom",
+                        RoleId = moderatorRole.Id,
+                        Roles = moderatorRole,
                         PhoneNumber = "0987654321",
                         Surname = "ModeratorSurname",
                         Name = "ModeratorName",
                         Patronimic = "ModeratorPatronimic",
                     };
-                    await userManager.CreateAsync(moderator, "1fakeModeratorMail@mail.com");
-                    await userManager.AddToRoleAsync(moderator, UserRoles.Moderator);
+                    await context.AddAsync(moderator);
 
                     var post = new Posts
                     {
