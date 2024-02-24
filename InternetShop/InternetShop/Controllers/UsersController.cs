@@ -14,6 +14,7 @@ namespace InternetShop.Controllers
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly int defaultRoleId = 1; // The default role ID
 
         public UsersController(ApplicationDbContext context)
         {
@@ -59,7 +60,7 @@ namespace InternetShop.Controllers
         {
             var users = new Users();
 
-            // Get data from the form
+            // Get data from the form using form collection
             users.Name = form["Name"];
             users.Surname = form["Surname"];
             users.Patronimic = form["Patronimic"];
@@ -124,6 +125,8 @@ namespace InternetShop.Controllers
 
             if (ModelState.IsValid)
             {
+                users.RoleId = defaultRoleId; // Assigning a role to a user
+
                 _context.Add(users);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
