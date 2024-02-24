@@ -16,7 +16,7 @@ namespace InternetShop.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            if(!User.Identity.IsAuthenticated){ return RedirectToAction("Index", "Account"); }
+            if(!User.Identity.IsAuthenticated){ return RedirectToAction("Login", "Account"); }
 
             var model = await _basketRepository.GetUserCratProductsAsync(User.Identity.Name);
 
