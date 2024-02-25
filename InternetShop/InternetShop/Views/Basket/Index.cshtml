@@ -19,7 +19,10 @@
                         <h5>@item.ProductName</h5>
                         <div style="display: flex; flex-direction:row; gap:10px; padding-left: 30px; align-items:center">
                             <h5>@item.Price.ToString("0.##") UAH</h5>
-                            <h5>@item.Quantity</h5>
+                            @{
+                                string quantity = $"x{item.Quantity}";
+                            }
+                            <h5>@quantity</h5>
                             <form asp-action="Delete" method="post">
                                 <input name="cartsProductsId" value="@item.Id" hidden />
                                 <button type="submit" class="btn-del">

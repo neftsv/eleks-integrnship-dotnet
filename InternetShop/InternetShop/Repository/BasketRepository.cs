@@ -40,8 +40,8 @@ namespace InternetShop.Repository
                     Id = cp.Id,
                     ProductId = cp.ProductId,
                     ProductName = cp.Products.Name,
-                    Quantity = $"x{cp.Quantity}",
-                    Price = Math.Round(cp.Quantity * cp.Products.Price, 2),
+                    Quantity = cp.Quantity,
+                    Price = cp.Products.Price,
                 })
                 .ToListAsync();
 
@@ -54,7 +54,7 @@ namespace InternetShop.Repository
             decimal totalPrice = 0;
             foreach (var item in items)
             {
-                totalPrice += Math.Round(item.Price, 2);
+                totalPrice += Math.Round(item.Price * item.Quantity, 2);
             }
 
             model.Items= items;
