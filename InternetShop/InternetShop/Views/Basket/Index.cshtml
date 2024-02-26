@@ -16,7 +16,9 @@
                 @foreach (var item in Model.Items)
                 {
                     <div class="product-container">
-                        <h5>@item.ProductName</h5>
+                        <a class="nav-link" asp-action="Index" asp-controller="Product" asp-route-id="@item.ProductId">
+                            <h5>@item.ProductName</h5>
+                        </a>
                         <div style="display: flex; flex-direction:row; gap:10px; padding-left: 30px; align-items:center">
                             <h5>@item.Price.ToString("0.##") UAH</h5>
                             @{
@@ -49,6 +51,12 @@
         white-space: nowrap;
         text-overflow: ellipsis;
     }
+    a{
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 
     .product-container {
         height: 60px;
@@ -75,31 +83,6 @@
         margin-bottom: 20px;
     }
 
-    .btn-buy {
-        background-color: #ff9b42;
-        border-radius: 20px;
-        display: block;
-        margin: 0 auto;
-        width: 120px;
-        text-align: center;
-        color: white;
-        font-family: 'Arial', sans-serif;
-        font-weight: bold;
-        font-size: 20px;
-        border: 3px solid transparent;
-    }
-
-        .btn-buy:hover,
-        .btn-buy:focus {
-            outline: none !important;
-            box-shadow: none !important;
-            border-color: #fa8b28;
-            color: #ffffff;
-        }
-
-        .btn-buy:active {
-            color: #F1F0EA;
-        }
 
     .btn-del {
         background: none;

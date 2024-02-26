@@ -199,3 +199,29 @@ h-userdb {
     border-radius: 20px;
     min-width: 15px;
 }
+
+.btn-buy {
+    background-color: #ff9b42;
+    border-radius: 20px;
+    display: block;
+    margin: 0 auto;
+    padding: 5px 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: 3px solid transparent;
+}
+
+    .btn-buy:hover,
+    .btn-buy:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #fa8b28;
+        color: #ffffff;
+    }
+
+    .btn-buy:active {
+        color: #F1F0EA;
+    }

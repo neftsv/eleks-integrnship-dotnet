@@ -1,0 +1,238 @@
+﻿@using InternetShop.ViewModels
+@model ProductViewModel
+
+<head>
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+
+<div class="my-frame">
+    <div class="my-container">
+        <div class="slider">
+            <ul id="slides" class="slides">
+                @foreach (var item in Model.Images)
+                {
+                    <li><img class="pruduct-img" src="@item" alt="Image 1"></li>
+                }
+            </ul>
+            <button class="prev" onclick="moveSlide(-1)">❮</button>
+            <button class="next" onclick="moveSlide(1)">❯</button>
+        </div>
+        <div class="des-container">
+            <h5>Description:</h5>
+            <h5>@Model.Description</h5>
+        </div>
+    </div>
+    <div class="my-container">
+        <div class="info-container">
+            <h4><b>@Model.Name</b></h4>
+            <br/>
+            <h4>Price: @Model.Price UAH</h4>
+        </div>
+        <div class="info-container">
+            <h4>Seller: @Model.Seller</h4>
+            <br />
+            @if (User.Identity.IsAuthenticated)
+            {
+                <h4>Contacts: @Model.PhoneNumber</h4>
+            }
+            else
+            {
+                <h4>To view contacts, please <a asp-action="Login" asp-controller="Account">log in</a></h4>
+            }
+        </div>
+        <form class="btn-container" asp-action="AddToCart" method="post">
+            <input name="productId" value="@Model.Id" hidden/>
+            <button type="submit" class="btn-buy">Add to cart</button>
+            <h5 style="margin-bottom:-1px;">Quantity:</h5>
+            <div class="number-input">
+                <button type="button" style="z-index: 2" class="btn btn-minus">-</button>
+                <input type="number" name="quantity" class="quantity" value="1" min="1" required />
+                <button type="button" class="btn btn-plus">+</button>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const childrenCount = document.querySelector('.slides').childElementCount;
+
+    document.getElementById("slides").style.width = 400 * childrenCount +'px'
+
+    function moveSlide(direction) {
+        const slides = document.querySelector('.slides');
+        const slideWidth = document.querySelector('.slider').offsetWidth;
+        
+        currentIndex = (currentIndex + direction) % childrenCount;
+        if (currentIndex < 0) {
+            currentIndex = childrenCount - 1; // Loop back to the last slide when at the beginning
+        }
+        slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    $('.btn-minus').click(function () {
+        var input = $(this).parent().find('.quantity');
+        var value = parseInt(input.val());
+        if (value > 1) {
+            input.val(value - 1);
+        }
+    });
+
+    $('.btn-plus').click(function () {
+        var input = $(this).parent().find('.quantity');
+        var value = parseInt(input.val());
+        input.val(value + 1);
+    });
+
+</script>
+
+<style>
+
+    .btn-container{
+        display:flex;
+        flex-direction: row;
+        margin-left:50px;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .number-input {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100px; /* Adjust as needed */
+    }
+
+        .number-input input[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+            .number-input input[type="number"]::-webkit-inner-spin-button,
+            .number-input input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+        .number-input .btn {
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+            .number-input .btn:hover {
+                background-color: #ddd;
+            }
+
+
+    .my-frame{
+        display:flex;
+        flex-direction:row;
+        margin-top: 50px;
+        gap:50px;
+        justify-content:center;
+    }
+
+    .btn-buy{
+        margin: 0;
+    }
+
+    .info-container{
+        width: 600px;
+        background: #d9e5d6;
+        padding: 20px;
+        border-radius: 20px;
+
+    }
+
+    .des-container{
+        width:400px;
+        background: #d9e5d6;
+        padding: 20px;
+        border-radius:20px;
+    }
+
+    .my-container {
+        display:flex;
+        flex-direction:column;
+        gap: 30px;
+        align-items: flex-start;
+    }
+
+    .slider {
+        position: relative;
+        width: 400px; /* Set width to 300px */
+        height: 400px; /* Set height to 300px */
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .slides {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        transition: transform 0.5s ease;
+    }
+
+        .slides li {
+            float: left;
+            width: 400px; /* Each slide takes 300px width */
+            height: 400px; /* Each slide takes 300px height */
+        }
+
+    .pruduct-img{
+        max-width: 100%; /* Ensures the image does not exceed the container width */
+        max-height: 400px; /* Set your desired maximum height */
+        width: auto; /* Allows the image to scale proportionally */
+        height: auto; /* Allows the image to scale proportionally */
+    }
+
+    li{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        color: orange;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        .prev:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border-radius: 5px 0 0 5px;
+        }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+
+</style>
