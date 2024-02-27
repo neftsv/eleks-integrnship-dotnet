@@ -2,7 +2,6 @@ using InternetShop.Data;
 using InternetShop.Interface;
 using InternetShop.Models;
 using InternetShop.Repository;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -11,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
 // Work in the database is related to user registration
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
