@@ -84,6 +84,23 @@ namespace InternetShop.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("InternetShop.Models.Delivery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DeliveryType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Delivery");
+                });
+
             modelBuilder.Entity("InternetShop.Models.Images", b =>
                 {
                     b.Property<int>("Id")
@@ -117,6 +134,16 @@ namespace InternetShop.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DeliveryAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DeliveryID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DeliveryId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(10,2)");
 
@@ -124,6 +151,8 @@ namespace InternetShop.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DeliveryId");
 
                     b.HasIndex("UserId");
 
@@ -344,11 +373,19 @@ namespace InternetShop.Migrations
 
             modelBuilder.Entity("InternetShop.Models.Orders", b =>
                 {
+                    b.HasOne("InternetShop.Models.Delivery", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("DeliveryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InternetShop.Models.Users", "Users")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Delivery");
 
                     b.Navigation("Users");
                 });

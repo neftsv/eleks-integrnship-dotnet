@@ -178,3 +178,9 @@ body {
 h-userdb {
     font-weight: bold;
 }
+
+    /*Orders*/
+.submit {
+    border-radius: 20px;
+    background-color: orange;
+}
