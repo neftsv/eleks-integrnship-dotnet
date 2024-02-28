@@ -1,8 +1,76 @@
-﻿@{
+﻿@using InternetShop.ViewModels
+@model ICollection<HomeViewModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    input[type="text"] {
+        /* Define your styles here */
+        width: 500px; /* Example width */
+        height: 30px; /* Example height */
+        padding: 5px; /* Example padding */
+        border: 2px solid #0FA3B1; /* Example border */
+        border-radius: 30px; /* Example border radius */
+        background-color: #f2f2f2; /* Example background color */
+        font-size: 16px; /* Example font size */
+        color: #333; /* Example text color */
+    }
+
+    h5{
+        margin: 0;
+    }
+
+    .category-container{
+        margin-top:40px;
+        justify-content: center;
+        display:grid;
+        grid-template-columns: 270px 270px 270px 270px;
+        gap: 20px;
+    }
+
+    .category-item{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        border-radius:10px;
+        text-align:center;
+        background: #D9E5D6;
+        padding:13px 15px;
+        color:black;
+    }
+
+    button{
+        border: none;
+        background: none;
+    }
+
+        .category-item:hover{
+            background: #FF9B42;
+            color: white;
+        }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="text-center">
+            <form asp-action="Index" asp-controller="Products" class="container" method="get">
+                <input type="text" name="productName" />
+                <button type="submit">
+                    <img src="~/images/search.png" width="30" height="30" />
+                </button>
+            </form>
+            <br/><br/>
+            <h4>Select category or view <a asp-action="Products" asp-controller="Home">All products</a>.</h4>
+            @* <h5 style="margin-top:20px;"> <a asp-action="Products" asp-controller="Home">Check out our Blogs.</a></h5> *@
+        </div>
+        <div class="category-container">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Index", "Products", new { categoryId = item.Id })" class="category-item nav-link"><h5>@item.Name</h5></a>
+            }
+        </div>
+    </div>
+
 </div>

@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddScoped<IHomeRepository, HomeRepository>();
 
 // Work in the database is related to user registration
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
