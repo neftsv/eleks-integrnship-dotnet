@@ -1,0 +1,36 @@
+﻿@model InternetShop.Models.BlogPost
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="border p-3">
+        <h2 class="text-center">Details - Blog Post</h2>
+        <div>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Content)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Content)
+                </dd>
+            </dl>
+        </div>
+        <div class="text-center">
+            <a asp-action="Index" class="btn btn-warning text-white ml-2">Back to List</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
