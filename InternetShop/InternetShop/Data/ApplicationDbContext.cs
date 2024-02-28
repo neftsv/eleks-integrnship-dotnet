@@ -21,6 +21,7 @@ namespace InternetShop.Data
         public DbSet<UsersProducts> UsersProducts { get; set; }
         public DbSet<Roles> Roles { get; set; }
 
+        public DbSet<BlogPost> BlogPosts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Products>()
