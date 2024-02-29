@@ -282,4 +282,8 @@ h-userdb {
     border-radius: 20px;
     min-width: 15px;
 }
-
+/*Orders*/
+.submit {
+    border-radius: 20px;
+    background-color: orange;
+}

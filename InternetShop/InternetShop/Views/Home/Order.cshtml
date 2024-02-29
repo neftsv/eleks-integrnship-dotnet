@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Order";
+}
+<html lang="en">
+<div class="row d-flex align-items-center justify-content-center">
+
+	<div class="col-md-4 card mr-4 p-8 ">
+		<div class="mb-1 or text-center"></div>
+			<div class="mb-3 or text-center">
+				<input type="submit" value="Sign in" class="btn btn-primary btn-lg btn-block or-login" />
+			</div>
+			<div class="mb-1 or">
+				<div class="text-center font-weight-bold">Or</div>
+			</div>
+			<div class="mb-3 or text-center">
+			<input type="submit" value="Register" class="btn btn-primary btn-lg btn-block or-login" />
+			</div>
+		<div class="mb-1 or text-center"></div>
+	</div>
+	
+
+	&nbsp <div class="col-md-4 card ml-4 p-8">
+		@using (Html.BeginForm("SubmitOrder", "Home", FormMethod.Post))
+		{
+		<div class="mb-3 or text-center">
+				<!--<input class="form-control" type="text" id="Adress" name="Address" placeholder="Address" value="">-->
+				<div class="form-group">
+					<label for="address">Enter Delivery Address:</label>
+					<input class="form-control" type="text" id="address" name="Address" placeholder="Address">
+				</div>
+		</div>
+		<div class="mb-3 or text-center">
+				<div class="form-group">
+					<label for="deliveryType">Select Delivery Type:</label>
+					<select class="form-control" id="deliveryType" name="DeliveryType">
+						@foreach (var deliveryType in ViewBag.DeliveryTypes)
+						{
+							<option value="@deliveryType">@deliveryType</option>
+						}
+					</select>
+				</div>
+				<div class="mb-3 or text-center">
+				<button type="submit" class="btn btn-primary submit">Submit</button>
+				</div>
+			</div>
+		}
+		</div>
+	</div>
+</div>
+</html>
