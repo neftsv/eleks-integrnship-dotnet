@@ -21,6 +21,7 @@ namespace InternetShop.Repository
             {
                 Id = c.Id,
                 Name = c.Name,
+                ImageUrl = c.ImageUrl,
             }).ToListAsync();
         }
     }

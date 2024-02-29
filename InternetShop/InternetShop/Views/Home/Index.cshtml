@@ -18,7 +18,9 @@
         color: #333; /* Example text color */
     }
 
-    h5{
+    h6{
+        border-radius: 10px;
+        padding: 10px 15px;
         margin: 0;
     }
 
@@ -26,19 +28,31 @@
         margin-top:40px;
         justify-content: center;
         display:grid;
-        grid-template-columns: 270px 270px 270px 270px;
-        gap: 20px;
+        grid-template-columns: auto auto auto auto;
+        gap: 30px;
     }
 
     .category-item{
         display:flex;
         align-items:center;
+        flex-direction: column;
+        gap: 10px;
         justify-content: center;
-        border-radius:10px;
+        border-radius: 10px;
         text-align:center;
-        background: #D9E5D6;
-        padding:13px 15px;
+        /* background: #D9E5D6; */
+        padding: 10px;
         color:black;
+    }
+
+        .category-item:hover h6{
+            background: #FF9B42;
+            color: white;
+        }
+
+    .item-img{
+        background: #fff;
+        border-radius: 100px;
     }
 
     button{
@@ -46,10 +60,6 @@
         background: none;
     }
 
-        .category-item:hover{
-            background: #FF9B42;
-            color: white;
-        }
 </style>
 
 <div class="container">
@@ -68,7 +78,10 @@
         <div class="category-container">
             @foreach (var item in Model)
             {
-                <a href="@Url.Action("Index", "Products", new { categoryId = item.Id })" class="category-item nav-link"><h5>@item.Name</h5></a>
+                <a href="@Url.Action("Index", "Products", new { categoryId = item.Id })" class="category-item nav-link">
+                    <img class="item-img" src="@item.ImageUrl" width="200" height="200" />
+                    <h6>@item.Name</h6>
+                </a>
             }
         </div>
     </div>

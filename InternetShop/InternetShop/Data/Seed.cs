@@ -22,12 +22,12 @@ namespace InternetShop.Data
                     var moderatorRole = new Roles { Name = UserRoles.Moderator };
                     await context.AddRangeAsync(userRole, adminRole, moderatorRole);
 
-                    var electronics = new Categories { Name = "Електроніка" };
-                    var householdGoods = new Categories { Name = "Побутові товари" };
-                    var householdAppliances = new Categories { Name = "Побутова техніка" };
-                    var personalCare = new Categories { Name = "Особиста гігієна" };
-                    var officeFurniture = new Categories { Name = "Офісні меблі" };
-                    var photoAndVideoTechnology = new Categories { Name = "Фото та відео техніка" };
+                    var electronics = new Categories { Name = "Електроніка", ImageUrl = "https://t4.ftcdn.net/jpg/03/64/41/07/360_F_364410756_Ev3WoDfNyxO9c9n4tYIsU5YBQWAP3UF8.jpg" };
+                    var householdGoods = new Categories { Name = "Побутові товари", ImageUrl = "https://www.tuv.com/content-media-files/master-content/services/products/0177-tuv-rheinland-household-goods/tuv-rheinland-household-goods-st-185801171.jpg" };
+                    var householdAppliances = new Categories { Name = "Побутова техніка", ImageUrl = "https://zhuk.ua/content/uploads/images/tamozhennoe-oformlenie-bytovoj-tehniki-1.jpg" };
+                    var personalCare = new Categories { Name = "Особиста гігієна", ImageUrl = "https://static.tildacdn.com/tild3862-3965-4362-b639-663264353730/5a269d4b0a893a44b336.png" };
+                    var officeFurniture = new Categories { Name = "Офісні меблі", ImageUrl = "https://www.amarant.co.ua/image/cache/catalog/jet/belaya-ofisnaya-mebel-800x600.jpg" };
+                    var photoAndVideoTechnology = new Categories { Name = "Фото та відео техніка", ImageUrl = "https://qwertyshop.ua/uploads/editor/image/foto-video/obshchaja/S1.jpg" };
                     
                     await context.AddRangeAsync(electronics,
                         householdGoods,

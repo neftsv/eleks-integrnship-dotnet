@@ -8,5 +8,6 @@ namespace InternetShop.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual List<Products> Products { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
