@@ -1,0 +1,39 @@
+﻿@model InternetShop.Models.BlogPost
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit post</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="border p-3">
+            <h2 class="mb-4 text-center">Edit post</h2>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="font-weight-bold">Title:</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="font-weight-bold">Content:</label>
+                    <textarea asp-for="Content" class="form-control" rows="5" style="resize: none;"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Author" class="font-weight-bold">Author:</label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-warning text-white">Save</button>
+                    <a href="@Url.Action("Index", "Blog")" class="btn btn-warning text-white ml-2">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -138,6 +138,37 @@ body {
     background-color: orange;
 }
 
+.btn-button-btn {
+    background-color: #f8ad60;
+    border-color: #f8ad60;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 10px 5px; /* �������� ������� */
+    width: 120px; /* �������� ������ */
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 16px; /* �������� ����� ������ */
+    padding: 10px 20px;
+}
+
+.btn-create-btn {
+    background-color: #f8ad60;
+    border-color: #f8ad60;
+    border-radius: 20px;
+    display: inline-block;
+    margin: 10px;
+    width: 150px; /* �������� � 120px */
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+
 /* Products */
 
 .category {
@@ -177,6 +208,58 @@ body {
 .form-group-edit,
 h-userdb {
     font-weight: bold;
+
+}/* Delivery */
+
+.category {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.list-group-item {
+    background-color: #f8f9fa;
+    border: none;
+    margin-bottom: 10px;
+}
+
+    .list-group-item:hover {
+        background-color: #e9ecef;
+        cursor: pointer;
+    }
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.delivery-info {
+    display: none;
+}
+
+.card-md {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+}
+=======
 }
 
 /* Cart */
@@ -199,3 +282,4 @@ h-userdb {
     border-radius: 20px;
     min-width: 15px;
 }
+

@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+        }
+
+        .category-container-btn {
+            background-color: #EDDEA4;
+    
+        }
+        .category-container {
+            background-color: #d9e5d6;
+            height: calc(100% - 56px);
+            overflow-y: auto;
+        }
+        .list-group-item {
+            background-color: #FFA500;
+            color: #ffffff;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; 
+        }
+        .list-group-item:hover {
+                background-color: #EDDEA4; 
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="category">
+                    <ul class="list-group">
+                        <li class="list-group-item" onclick="showDeliveryInfo('category1')">Самовивіз з магазину</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category2')">Отримайте сьогодні</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category3')">Сьогодні у зручний час</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category4')">У вказаний вами час</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category5')">Кур'єром від "Нова Пошта"</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category6')">До відділеня "Нова Пошта"</li>
+                        <li class="list-group-item" onclick="showDeliveryInfo('category7')">До відділення "Укрпошта"</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 content">
+                <div id="category1-info" class="delivery-info" style="margin-left: -230px;">
+                    <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Якщо зробили замовлення до 19:00 - можете забрати покупку у той самий день. Замовили після 19:00 - забирайте наступного дня.
+                        </div>
+                        <div class="card-header category-container-btn">
+                            Як купити товар у самовивіз:
+                        </div>
+                        <div class="card-body">
+                            <p class="lead text-muted">
+                                <strong>01</strong>
+                            </p>
+                            <ul>
+                                <li>Під час оформлення вказуєте: "Самовивіз з магазину або InternetShop точки"</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>02</strong>
+                            </p>
+                            <ul>
+                                <li>Вибираєте зручний магазин або InternetShop точку зі списку</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>03</strong>
+                            </p>
+                            <ul>
+                                <li>Після оформлення вам надійде СМС або Viber-повідомлення з інформацією про замовлення</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>04</strong>
+                            </p>
+                            <ul>
+                                <li>Отримайте товар у зоні видачі онлайн-покупок в магазині, або в InternetShop точці</li>
+                            </ul>
+                        </div>
+                        </div>
+                </div>
+                <div id="category2-info" class="delivery-info" style="margin-left: -230px;">
+                    <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Переваги:
+                        </div>
+                        <div class="card-body">
+                            <p class="lead text-muted">
+                                <strong>Занесемо у квартиру</strong>
+                            </p>
+                            <ul>
+                                <li>Ми не тільки доставимо товар до під'їзду, але ще піднімемо на поверх і занесемо у вашу квартиру</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Нагадаємо про доставку</strong>
+                            </p>
+                            <ul>
+                                <li>У день доставки за 1-2 години до приїзду обов'язково зателефонуємо
+
+                                    Якщо не зможемо додзвонитися – надішлемо SMS</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Готові вас почекати</strong>
+                            </p>
+                            <ul>
+                                <li>Якщо потрібно, кур'єр зможе зачекати вас до 15 хв</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Безпека</strong>
+                            </p>
+                            <ul>
+                                <li>Ми завжди у масках. А перед входом у квартиру навіть одягнемо бахіли, якщо потрібно</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="category3-info" class="delivery-info" style="margin-left: -230px;">
+                    <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Переваги:
+                        </div>
+                        <div class="card-body">
+                            <p class="lead text-muted">
+                                <strong>Це ваше швидке рішення</strong>
+                            </p>
+                            <ul>
+                                <li>Якщо терміново потрібен подарунок на свято, або щось трапилося і товар потрібний прямо зараз. А можливо просто не хочете чекати на звичайну доставку</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>У зручний час</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    Ви самі вибираєте зручний діапазон часу доставки у день замовлення
+                                </li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Знаєте, де зараз замовлення</strong>
+                            </p>
+                            <ul>
+                                <li>Відстежуйте, де знаходиться замовлення за спеціальним посиланням. Також будуть надходити повідомлення про статус доставки</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Зручна оплата</strong>
+                            </p>
+                            <ul>
+                                <li>Оплачуєте карткою онлайн під час оформлення замовлення або готівкою кур'єру, коли отримуєте товар</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="category4-info" class="delivery-info" style="margin-left: -230px;">
+                    <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Переваги:
+                        </div>
+                        <div class="card-body">
+                            <p class="lead text-muted">
+                                <strong>Вибираєте зручний час</strong>
+                            </p>
+                            <ul>
+                                <li>Можете вказати зручний проміжок часу доставки під час оформлення замовлення</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Занесемо прямо у квартиру</strong>
+                            </p>
+                            <ul>
+                                <li>Ми не тільки доставимо товар до під'їзду, а ще піднімемо на поверх та занесемо його до вашої квартири</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Нагадаємо про доставку</strong>
+                            </p>
+                            <ul>
+                                <li>У день доставки за 1-2 години до приїзду обов'язково зателефонуємо
+                                    Якщо не зможемо додзвонитися – надішлемо SMS.
+                                    Якщо потрібно, кур'єр почекає на вас до 15 хв.</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>Безпека</strong>
+                            </p>
+                            <ul>
+                                <li>
+                                    Ми завжди у масках. А перед входом у квартиру навіть одягнемо бахили, якщо потрібно
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="category5-info" class="delivery-info" style="margin-left: -230px;">
+                <div class="card-md">
+                        <div class="card-header category-container-btn">
+                        Переваги:
+                    </div>
+                    <div class="card-body">
+                        <p class="lead text-muted">
+                            <strong>Статус доставки</strong>
+                        </p>
+                        <ul>
+                                <li>Завжди знаєте, де знаходиться ваша посилка: із SMS, контакт-центру, особистого кабінету або мобільного додатка «Нової Пошти»</li>
+                        </ul>
+                        <p class="lead text-muted">
+                            <strong>Приходить вчасно</strong>
+                        </p>
+                        <ul>
+                                <li>87% усіх доставок за адресою виконуються у зазначений термін</li>
+                        </ul>
+                        <p class="lead text-muted">
+                            <strong>Клієнти задоволені</strong>
+                        </p>
+                        <ul>
+                                <li>Рівень задоволеності клієнтів кур'єрською доставкою «Нової пошти» — 8,66 з 9</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+                <div id="category6-info" class="delivery-info" style="margin-left: -230px;">
+                    <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Як купити товар з доставкою до відділення “Нової пошти”
+                        </div>
+                        <div class="card-body">
+                            <p class="lead text-muted">
+                                <strong>01</strong>
+                            </p>
+                            <ul>
+                                <li>Під час оформлення вказуєте: «Нова пошта» у відділення</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>02</strong>
+                            </p>
+                            <ul>
+                                <li>Вказуєте дату доставки та номер відділення</li>
+                            </ul>
+                            <p class="lead text-muted">
+                                <strong>03</strong>
+                            </p>
+                            <ul>
+                                <li>Заповнюєте інші необхідні поля</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            <div id="category7-info" class="delivery-info" style="margin-left: -230px;">
+                <div class="card-md">
+                        <div class="card-header category-container-btn">
+                            Переваги:
+                    </div>
+                    <div class="card-body">
+                        <p class="lead text-muted">
+                            <strong>Завжди поруч</strong>
+                        </p>
+                        <ul>
+                                <li>Отримання відправлення у будь-якому куточку України. Понад 11 000 точок видачі. Мережа Укрпошти покриває 100% території України: 29 000 населенних пунктів</li>
+                        </ul>
+                        <p class="lead text-muted">
+                            <strong>Статус доставки</strong>
+                        </p>
+                        <ul>
+                                <li>Вам буде надіслано SMS або Viber-повідомлення про прибуття відправлення у відділення.</li>
+                        </ul>
+                        <p class="lead text-muted">
+                            <strong>Оптимальні терміни доставки</strong>
+                        </p>
+                        <ul>
+                            <li>від 2-х до 5-ти днів</li>
+                        </ul>
+                        <p class="lead text-muted">
+                            <strong>Безкоштовно зберігаємо</strong>
+                        </p>
+                        <ul>
+                                <li>Безкоштовне зберігання посилки 7 днів</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDeliveryInfo(category) {
+            document.querySelectorAll('.delivery-info').forEach(function (info) {
+                info.style.display = 'none';
+            });
+            document.getElementById(category + '-info').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
