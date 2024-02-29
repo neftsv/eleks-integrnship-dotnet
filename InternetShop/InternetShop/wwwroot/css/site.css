@@ -208,6 +208,7 @@ body {
 .form-group-edit,
 h-userdb {
     font-weight: bold;
+
 }/* Delivery */
 
 .category {
@@ -258,3 +259,27 @@ h-userdb {
 .card-body {
     padding: 20px;
 }
+=======
+}
+
+/* Cart */
+
+.cart-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.items-count {
+    z-index:2;
+    margin: 0 -10px -5px 0;
+    text-align: center;
+    font-weight: normal;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    background-color: #ff9b42;
+    border-radius: 20px;
+    min-width: 15px;
+}
+
