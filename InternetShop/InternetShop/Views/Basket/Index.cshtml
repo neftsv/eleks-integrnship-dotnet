@@ -1,6 +1,12 @@
 ﻿@using InternetShop.ViewModels
 @model CartViewModel
-
+<head>
+    <script>
+        function redirect() {
+            window.location.href = '@Url.Action("RedirectToOrder", "Basket")';
+        }
+    </script>
+</head>
 
 <div class="container">
     <div class="row justify-content-center mt-5">
@@ -35,7 +41,8 @@
                 <div class="text-end" style="margin-bottom: 20px">
                     <h5>Total: @Model.TotalPrice</h5>
                 </div>
-                <button class="btn-buy">Buy</button>
+                <button class="btn-buy" onclick="redirect()">Buy</button>
+                
             }
 
         </div>
