@@ -12,6 +12,7 @@ namespace InternetShop.Data
 
         public DbSet<Carts> Carts { get; set; }
         public DbSet<CartsProducts> CartsProducts { get; set; }
+        public DbSet<OrdersProducts> OrdersProducts { get; set; }
         public DbSet<Categories> Categories { get; set; }
 		public DbSet<Delivery> Delivery { get; set; }
 		public DbSet<Images> Images { get; set; }
