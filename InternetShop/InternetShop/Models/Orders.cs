@@ -14,5 +14,9 @@ namespace InternetShop.Models
         public virtual List<OrdersProducts> OrdersProducts {  get; set; }
         public decimal TotalPrice {  get; set; }
         public DateTime Date {  get; set; }
-    }
+		public string DeliveryAddress { get; set; }
+		public int DeliveryId { get; set; }
+		[ForeignKey("DeliveryId")]
+		public Delivery Delivery { get; set; }
+	}
 }

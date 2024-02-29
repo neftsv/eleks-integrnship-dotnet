@@ -55,6 +55,10 @@ namespace InternetShop.Controllers
 
             return Json(cartItemCount);
         }
+        public ActionResult RedirectToOrder()
+        {
+            return RedirectToAction("Order", "Home");
+        }
 
     }
 }
