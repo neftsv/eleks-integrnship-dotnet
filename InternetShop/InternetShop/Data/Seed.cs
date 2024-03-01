@@ -36,6 +36,11 @@ namespace InternetShop.Data
                         officeFurniture,
                         photoAndVideoTechnology);
 
+                    var ukrposhta = new Delivery { DeliveryType = "Ukrposhta" };
+                    var novaposhta = new Delivery { DeliveryType = "Novaposhta" };
+
+                    await context.AddRangeAsync(ukrposhta, novaposhta);
+
                     var user1 = new Users
                     {
                         Email = "fakeMail@mail.com",
@@ -298,7 +303,7 @@ namespace InternetShop.Data
                         Products = product1,
                         Carts = new Carts
                         {
-                            User = user1,
+                            User = user2,
                         },
                         Quantity = 1,
                     };
@@ -313,9 +318,13 @@ namespace InternetShop.Data
                         {
                             Date = DateTime.Now,
                             TotalPrice = product1.Price,
-                            UserId = user1.Id,
-                            Users = user1,
+                            UserId = user2.Id,
+                            Users = user2,
+                            DeliveryAddress = "test Delivery Address",
+                            Delivery = novaposhta,
+                            DeliveryId = novaposhta.Id,
                         },
+                        
                         Quantity = 1,
                     };
 
@@ -360,6 +369,14 @@ namespace InternetShop.Data
                     };
 
                     context.Add(post);
+
+                    await context.AddAsync(new BlogPost
+                    {
+                        Author = "Test Author",
+                        CreatedAt = DateTime.Now,
+                        Content = "Blog post content",
+                        Title = "Blog post title",
+                    });
 
                     context.SaveChanges();
                 }
