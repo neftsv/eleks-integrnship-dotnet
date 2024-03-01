@@ -348,6 +348,7 @@ namespace InternetShop.Data
                     };
                     await context.AddAsync(moderator);
 
+
                     var post = new Posts
                     {
                         ProductId = product1.Id,
