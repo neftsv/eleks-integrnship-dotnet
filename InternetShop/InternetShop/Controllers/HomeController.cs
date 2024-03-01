@@ -1,5 +1,7 @@
+using InternetShop.Interface;
 using InternetShop.Data;
 using InternetShop.Models;
+using InternetShop.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
@@ -9,17 +11,20 @@ namespace InternetShop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHomeRepository _homeRepository;
 		private readonly ApplicationDbContext _context;
 
-		public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, IHomeRepository homeRepository, ApplicationDbContext context)
         {
             _logger = logger;
+            _homeRepository = homeRepository;
 			_context = context;
 		}
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _homeRepository.GetAllCategoriesAsync();
+            return View(model);
         }
 
         public IActionResult Privacy()
