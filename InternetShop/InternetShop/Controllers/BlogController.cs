@@ -37,6 +37,12 @@ namespace InternetShop.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Отримання ідентифікатора поточного користувача
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+
+                // Встановлення AuthorId для створеного поста на ідентифікатор користувача
+                blogPost.AuthorId = Convert.ToInt32(user?.Id);
+
                 blogPost.CreatedAt = DateTime.Now;
                 _context.Add(blogPost);
                 await _context.SaveChangesAsync();
