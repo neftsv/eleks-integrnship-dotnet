@@ -287,3 +287,36 @@ h-userdb {
     border-radius: 20px;
     background-color: orange;
 }
+
+/* Dashboard page*/
+.h_dashboard {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+}
+
+.btn_edit_password {
+    background-color: #ff9b42;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border: 3px solid transparent;
+}
+
+    .btn_edit_password:hover,
+    .btn_edit_password:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border-color: #fa8b28;
+        color: #ffffff;
+    }
+
+    .btn_edit_password:active {
+        color: #F1F0EA;
+    }
+
+.h_dashboard_posts {
+    text-align: center;
+}
