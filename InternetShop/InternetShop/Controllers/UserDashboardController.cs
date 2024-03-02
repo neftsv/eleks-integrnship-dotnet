@@ -87,6 +87,7 @@ public class UserDashboardController : Controller
         var order = _context.Orders
                             .Include(o => o.OrdersProducts)
                             .ThenInclude(op => op.Products)
+                            .Include(o => o.Delivery)
                             .FirstOrDefault(o => o.Id == orderId);
 
         if (order == null)
