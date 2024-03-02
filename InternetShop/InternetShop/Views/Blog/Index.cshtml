@@ -15,6 +15,9 @@
                         <div class="card" style="background-color: #f8f9fa; border: none;">
                             <div class="card-body">
                                 <h5 class="card-title" style="font-family: 'Georgia', serif; font-size: 1.2rem; color: #333;">@post.Title</h5>
+                                <div style="border: 1px solid #ccc; padding: 10px; text-align: center;">
+                                    <img src="@Url.Content($"~/image/{post.image}")" style="width:300px; height:300px" />
+                                </div>
                                 <p class="card-text" style="color: #555;">
                                     @post.Content.Substring(0, Math.Min(100, @post.Content.Length))
                                     @if (post.Content.Length > 100)
