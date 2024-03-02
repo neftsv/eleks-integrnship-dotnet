@@ -9,10 +9,12 @@ namespace InternetShop.Controllers
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IWebHostEnvironment hostingenvironment;
 
-        public BlogController(ApplicationDbContext context)
+        public BlogController(ApplicationDbContext? context, IWebHostEnvironment hc)
         {
             _context = context;
+            hostingenvironment = hc;
         }
 
         // GET: /Blog
@@ -33,16 +35,27 @@ namespace InternetShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Title,Content,Author")] BlogPost blogPost)
+        public async Task<IActionResult> Create(BlogPostVM blogPost1)
         {
-            if (ModelState.IsValid)
+            string filename = "";
+            if (blogPost1.photo != null)
             {
-                blogPost.CreatedAt = DateTime.Now;
-                _context.Add(blogPost);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Blog");
+                string uploadfolder = Path.Combine(hostingenvironment.WebRootPath, "Image");
+                filename = Guid.NewGuid().ToString() + "_" + blogPost1.photo.FileName;
+                string filepath = Path.Combine(uploadfolder, filename);
+                blogPost1.photo.CopyTo(new FileStream(filepath, FileMode.Create));
             }
-            return View(blogPost);
+            BlogPost p = new BlogPost
+            {
+                Title = blogPost1.Title,
+                Content = blogPost1.Content,
+                Author = blogPost1.Author,
+                image = filename
+            };
+            _context.BlogPosts.Add(p);
+            _context.SaveChanges();
+            ViewBag.success = "Record added";
+            return View();
         }
 
         // GET: /Blog/Edit/5
@@ -148,4 +161,5 @@ namespace InternetShop.Controllers
 
 
     }
+
 }
