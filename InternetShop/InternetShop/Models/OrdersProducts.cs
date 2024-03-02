@@ -16,5 +16,7 @@ namespace InternetShop.Models
         [ForeignKey("OrderId")]
         public Orders Orders { get; set; }
         public int Quantity { get; set; }
+        [Range(0, 100)]
+        public int Status { get; set; } = 0;
     }
 }
