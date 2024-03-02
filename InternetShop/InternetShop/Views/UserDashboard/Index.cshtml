@@ -28,7 +28,7 @@
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
-                                        @if (orderProduct.Status < 100)
+                                        @if (orderProduct.Status < 3)
                                         {
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -42,7 +42,20 @@
                                                 </div>
                                                 <div>
                                                         @orderProduct.Products.Price UAH |
-                                                        <a class="status_current_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
+                                                        <a class="status_current_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">
+                                                            @if (orderProduct.Status == 0)
+                                                            {
+                                                                <text>Confirm</text>
+                                                            }
+                                                            else if (orderProduct.Status == 1)
+                                                            {
+                                                                <text>Sent</text>
+                                                            }
+                                                            else if (orderProduct.Status == 2)
+                                                            {
+                                                                <text>Transit</text>
+                                                            }
+                                                        </a>
                                                 </div>
                                             </div>
                                         </li>
@@ -68,7 +81,7 @@
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
-                                        @if (orderProduct.Status == 100)
+                                        @if (orderProduct.Status > 3)
                                         {
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -81,8 +94,25 @@
                                                     }
                                                 </div>
                                                 <div>
-                                                    @orderProduct.Products.Price UAH |
-                                                        <a class="status_history_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
+                                                        @orderProduct.Orders.TotalPrice UAH |
+                                                        <a class="status_history_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">
+                                                            @if(orderProduct.Status == 4 )
+                                                            {
+                                                                <span style="color: green; text-decoration: underline;"><text>Received</text></span>
+                                                            }
+                                                            else if (orderProduct.Status == 5)
+                                                            {
+                                                                <text>Failed</text>
+                                                            }
+                                                            else if (orderProduct.Status == 6)
+                                                            {
+                                                                <text>Canceld</text>
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>Returned</text>
+                                                            }
+                                                        </a>
                                                 </div>
                                             </div>
                                         </li>
