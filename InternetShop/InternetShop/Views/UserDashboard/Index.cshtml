@@ -16,11 +16,13 @@
 
     <div class="row d-flex justify-content-center">
         <div class="col text-center">
+            <div class="mb-3">
             <h3 class="h_dashboard">Your current orders:</h3>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="overflow-auto" style="max-height: 100px;">
+                        <div class="overflow-auto overflow_dashboard">
                             <ul class="list-group">
                                 @foreach (var order in Model.Orders)
                                 {
@@ -28,8 +30,8 @@
                                     {
                                         @if (orderProduct.Status < 100)
                                         {
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between align-items-center">
+                                            <li class="list-group-item list_group_orders">
+                                                <div class="d-flex justify-content-between align-items-center">
                                                 <div>
                                                     @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
                                                     {
@@ -40,7 +42,7 @@
                                                 <div>
                                                     Quantity: @orderProduct.Quantity
                                                     Price: @orderProduct.Products.Price
-                                                    <a href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
+                                                        <a class="status_current_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -54,11 +56,13 @@
             </div>
         </div>
         <div class="col text-center">
+            <div class="mb-3">
             <h3 class="h_dashboard">Your order history:</h3>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <div class="overflow-auto" style="max-height: 100px;">
+                        <div class="overflow-auto overflow_dashboard">
                             <ul class="list-group">
                                 @foreach (var order in Model.Orders)
                                 {
@@ -66,8 +70,8 @@
                                     {
                                         @if (orderProduct.Status == 100)
                                         {
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between align-items-center">
+                                            <li class="list-group-item list_group_orders">
+                                                <div class="d-flex justify-content-between align-items-center">
                                                 <div>
                                                     @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
                                                     {
@@ -78,7 +82,7 @@
                                                 <div>
                                                     Quantity: @orderProduct.Quantity
                                                     Price: @orderProduct.Products.Price
-                                                    <a href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
+                                                        <a class="status_history_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">Status</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -93,7 +97,7 @@
         </div>
     </div>
 
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center mb-3 mt-3">
         <div class="col">
             <a class="btn btn-sm mb-1 btn_edit_password" asp-action="EditPassword" asp-route-id="@Model.Id">Change password</a>
         </div>
@@ -102,12 +106,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h3 class="text-center mb-4" style="font-family: 'Arial Black', sans-serif; color: #333;">Your posts</h3>
+            <h3 class="h_dashboard text-center mb-5">Your posts</h3>
             <div class="row">
                 @foreach (var post in ViewBag.UserPosts)
                 {
                     <div class="col-md-4 mb-4">
-                        <div class="card" style="background-color: #f8f9fa; border: none;">
+                        <div class="card" style="background-color: #d9e5d6; border: none;">
                             <div class="card-body">
                                 <h5 class="card-title" style="font-family: 'Georgia', serif; font-size: 1.2rem; color: #333;">@post.Title</h5>
                                 <p class="card-text" style="color: #555;">
@@ -121,7 +125,7 @@
                                     <small>Published on @post.CreatedAt.ToString("MMMM dd, yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("en")) by @post.Author</small>
                                 </p>
                                 <div class="text-center">
-                                    <a href="@Url.Action("Edit", "Blog", new { id = post.Id })" class="btn or-button btn-sm or-register btn-button-btn text-white">Edit</a>
+                                    <a href="@Url.Action("Edit", "Blog", new { id = post.Id })" class="btn  btn-button-btn text-white">Edit</a>
                                     <a href="@Url.Action("Details", "Blog", new { id = post.Id })" class="btn or-button btn-sm or-register btn-button-btn text-white">Details</a>
                                     <a href="@Url.Action("Delete", "Blog", new { id = post.Id })" class="btn or-button btn-sm or-register btn-button-btn text-white">Delete</a>
                                 </div>

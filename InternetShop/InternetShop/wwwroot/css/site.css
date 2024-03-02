@@ -320,3 +320,22 @@ h-userdb {
 .h_dashboard_posts {
     text-align: center;
 }
+
+.list_group_orders,
+.list_group_orders:hover{
+    background-color: #d9e5d6;
+}
+.status_current_order,
+.status_current_order:hover{
+    color: green;
+}
+.status_history_order,
+.status_history_order:hover{
+    color: red;
+}
+
+.overflow_dashboard {
+    max-height: 100px;
+    scrollbar-color: #0fa3b1 #ffffff;
+    scrollbar-width: thin;
+}
