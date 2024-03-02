@@ -1,0 +1,33 @@
+﻿@model InternetShop.Models.Orders
+
+@{
+    ViewData["Title"] = "Order Status";
+}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-4 col-md-6 rounded p-4">
+            <h4 class="text-center mb-3" id="registration-heading">Order status</h4>
+            @foreach (var orderProduct in Model.OrdersProducts)
+            {
+                <div class="mb-3">
+                    @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
+                    {
+                        <img src="@Url.Content(orderProduct.Products.Images.First().Url)" alt="Product Image" style="max-width: 50px; max-height: 50px;" />
+                    }
+                    <span>@orderProduct.Products.Name</span><br />
+                    <strong>Quantity:</strong> @orderProduct.Quantity<br />
+                    <strong>Price:</strong> @orderProduct.Products.Price<br />
+                </div>
+                <div class="progress" style="height: 20px; transform: rotate(90deg); margin-top: 50%">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="@orderProduct.Status" aria-valuemin="0" aria-valuemax="100" style="width: @orderProduct.Status%;">
+                        @orderProduct.Status%
+                    </div>
+                </div>
+            }
+            <div class="mt-5">
+                <a class="btn btn-secondary" asp-action="Index">Back to UserPage</a>
+            </div>
+        </div>
+    </div>
+</div>
