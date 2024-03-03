@@ -1,6 +1,7 @@
 ﻿using InternetShop.Interface;
 using InternetShop.Models;
 using InternetShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InternetShop.Controllers
@@ -21,7 +22,7 @@ namespace InternetShop.Controllers
 
             if (productName != null)
             {
-                model = model.Where(p => p.Name == productName).ToList();
+                model = model.Where(p => p.Name.ToUpper().Contains(productName.ToUpper())).ToList();
                 ViewBag.productName = productName;
             }
 
