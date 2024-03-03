@@ -12,11 +12,11 @@
                 @foreach (var post in Model)
                 {
                     <div class="col-md-4 mb-4">
-                        <div class="card" style="background-color: #f8f9fa; border: none;">
+                        <div class="card" style="background-color: #EDDEA4; border: none;">
                             <div class="card-body">
                                 <h5 class="card-title" style="font-family: 'Georgia', serif; font-size: 1.2rem; color: #333;">@post.Title</h5>
                                 <div style="border: 1px solid #ccc; text-align: center;">
-                                    <img src="@Url.Content($"~/image/{post.image}")" style="width:250px; height:250px" />
+                                    <img src="@Url.Content($"~/image/{post.image}")" style="width:365px; height:230px" />
                                 </div>
                                 <p class="card-text" style="color: #555;">
                                     @post.Content.Substring(0, Math.Min(100, @post.Content.Length))
