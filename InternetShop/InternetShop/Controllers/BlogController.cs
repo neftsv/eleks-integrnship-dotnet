@@ -161,5 +161,100 @@ namespace InternetShop.Controllers
 
 
     }
+		// GET: /Blog/Create
+		[Authorize]
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		// POST: /Blog/Create
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Authorize]
+		public async Task<IActionResult> Create(BlogPostVM blogPost1)
+		{
+			string filename = "";
+			if (blogPost1.Photo != null)
+			{
+				string uploadfolder = Path.Combine(hostingenvironment.WebRootPath, "Image");
+				filename = Guid.NewGuid().ToString() + "_" + blogPost1.Photo.FileName;
+				string filepath = Path.Combine(uploadfolder, filename);
+				blogPost1.Photo.CopyTo(new FileStream(filepath, FileMode.Create));
+			}
+			BlogPost p = new BlogPost
+			{
+				Title = blogPost1.Title,
+				Content = blogPost1.Content,
+				Author = blogPost1.Author,
+				image = filename
+			};
+			_context.BlogPosts.Add(p);
+			_context.SaveChanges();
+			ViewBag.success = "Record added";
+			return RedirectToAction("Index", "Blog");
+			return View();
+
+		}
+
+		// GET: /Blog/Edit/5
+		[Authorize] // Тільки адміністратор може редагувати публікації
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var blogPost = await _context.BlogPosts.FindAsync(id);
+			if (blogPost == null)
+			{
+				return NotFound();
+			}
+			return View(blogPost);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		[Authorize]
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,Author")] BlogPost blogPost1)
+		{
+			if (id != blogPost1.Id)
+			{
+				return NotFound();
+			}
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					var existingPost = await _context.BlogPosts.FindAsync(id);
+					if (existingPost == null)
+					{
+						return NotFound();
+					}
+
+					existingPost.Title = blogPost1.Title;
+					existingPost.Content = blogPost1.Content;
+					existingPost.Author = blogPost1.Author;
+					existingPost.CreatedAt = DateTime.Now; // Set CreatedAt value
+
+					_context.Update(existingPost);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!BlogPostExists(blogPost1.Id))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+			}
+			return RedirectToAction("Index", "Blog");
+		}
 
 }
