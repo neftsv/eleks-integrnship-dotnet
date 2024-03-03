@@ -88,7 +88,9 @@
                 </div>
             </div>
             <div class="d-flex flex-row-reverse">
-                &nbsp <img src="~/images/person.png" width="30" height="30" />&nbsp
+                <a asp-action="Index" asp-controller="UserDashboard" class="cart-container nav-link">
+                    <img src="~/images/person.png" width="30" height="30" alt="Person Image" />
+                </a>
                 <a asp-action="Index" asp-controller="Basket" class="cart-container nav-link">
                     <span class="items-count" id="cart-counter"></span>
                     <img src="~/images/cart.png" width="30" height="30" />
