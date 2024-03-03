@@ -7,6 +7,6 @@
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Author { get; set; }
-        public IFormFile photo {get; set; }
+        public IFormFile Photo {get; set; }
 }
 }
