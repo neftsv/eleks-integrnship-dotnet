@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using InternetShop.Data;
 using InternetShop.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InternetShop.Controllers
 {
@@ -22,12 +23,14 @@ namespace InternetShop.Controllers
         }
 
         // GET: Users
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
 
         // GET: Users/Details/5
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -153,6 +156,7 @@ namespace InternetShop.Controllers
         // POST: Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,RoleId,Email,Password,Surname,Name,Patronimic,PhoneNumber")] Users users)
         {
             if (id != users.Id)
@@ -199,6 +203,7 @@ namespace InternetShop.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var users = await _context.Users.FindAsync(id);

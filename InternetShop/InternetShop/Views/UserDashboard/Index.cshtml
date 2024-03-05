@@ -156,7 +156,10 @@
     <div class="row d-flex justify-content-center mb-3 mt-3">
         <div class="col">
             <a class="btn btn-sm mb-1 btn_edit_password" asp-action="EditPassword" asp-route-id="@Model.Id">Change password</a>
-            <a class="btn btn-sm mb-1 btn_edit_password" style="background-color: orangered" asp-action="Adminpannel">Admin Panell</a>
+            @if (@Model.RoleId == 2 || @Model.RoleId == 3)
+            {
+                <a class="btn btn-sm mb-1 btn_edit_password" style="background-color: orangered" asp-action="Adminpannel">Admin Panel</a>
+            }
         </div>
     </div>
 </div>
@@ -164,6 +167,10 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="h_dashboard text-center mb-5">Your posts</h3>
+            @if (ViewBag.UserPosts == null || ViewBag.UserPosts.Count == 0)
+            {
+                <h4 class="h_dashboard text-center" style="border-radius: 20px; background-color: #d9e5d6">You don't have any posts yet</h4>
+            }else{
             <div class="row">
                 @foreach (var post in ViewBag.UserPosts)
                 {
@@ -191,6 +198,7 @@
                     </div>
                 }
             </div>
+            }
         </div>
     </div>
 </div>
