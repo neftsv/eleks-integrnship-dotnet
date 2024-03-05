@@ -24,12 +24,16 @@
                     <div class="col">
                         <div class="overflow-auto overflow_dashboard">
                             <ul class="list-group">
+                                @if (Model.Orders != null && Model.Orders.Any())
+                                {
+                                var hasProducts = false;
                                 @foreach (var order in Model.Orders)
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
                                         @if (orderProduct.Status < 3)
                                         {
+                                            hasProducts = true;
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                 <div>
@@ -58,9 +62,18 @@
                                                         </a>
                                                 </div>
                                             </div>
-                                        </li>
+                                            </li>
+                                        }
+                                        }
+                                        if (!hasProducts)
+                                        {
+                                            <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
                                         }
                                     }
+                                }
+                                else
+                                {
+                                    <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
                                 }
                             </ul>
                         </div>
@@ -77,12 +90,16 @@
                     <div class="col">
                         <div class="overflow-auto overflow_dashboard">
                             <ul class="list-group">
+                                @if (Model.Orders != null && Model.Orders.Any())
+                                {
+                                var hasProducts = false;
                                 @foreach (var order in Model.Orders)
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
                                         @if (orderProduct.Status > 3)
                                         {
+                                            hasProducts = true;
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                 <div>
@@ -117,7 +134,16 @@
                                             </div>
                                         </li>
                                         }
+                                        }
+                                        if (!hasProducts)
+                                        {
+                                            <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
+                                        }
                                     }
+                                }
+                                else
+                                {
+                                    <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
                                 }
                             </ul>
                         </div>
