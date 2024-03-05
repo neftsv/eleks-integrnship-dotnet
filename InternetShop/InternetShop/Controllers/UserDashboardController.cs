@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using InternetShop.Data;
 using InternetShop.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
 
 public class UserDashboardController : Controller
 {
@@ -160,6 +161,12 @@ public class UserDashboardController : Controller
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
+    }
+    [HttpGet]
+    [Authorize(Roles = "2,3")]
+    public IActionResult Adminpannel()
+    {
+        return RedirectToAction("Index", "Users");
     }
     private bool UserExists(int id)
     {
