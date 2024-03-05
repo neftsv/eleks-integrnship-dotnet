@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Order";
+}
+<html lang="en">
+<div class="row d-flex align-items-center justify-content-center">
+    <div class="col-md-4 card p-8 text-center">
+        @model List<CartsProducts>
+        @using (Html.BeginForm("SubmitOrder", "Home", FormMethod.Post))
+        {
+            <div class="mb-3 or">
+                <div class="cart-products">
+                    <h3>Your order</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Products.Name</td>
+                                    <td>@item.Products.Price.ToString("0.##") UAH</td>
+                                    <td>@item.Quantity</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="mb-3 or">
+                <div class="form-group">
+                    <label for="address">Enter Delivery Address:</label>
+                    <input class="form-control" type="text" id="address" name="Address" placeholder="Address">
+                </div>
+            </div>
+            <div class="mb-3 or">
+                <div class="form-group">
+                    <label for="deliveryType">Select Delivery Type:</label>
+                    <select class="form-control" id="deliveryType" name="DeliveryType">
+                        @foreach (var deliveryType in ViewBag.DeliveryTypes)
+                        {
+                            <option value="@deliveryType">@deliveryType</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3 or">
+                <button type="submit" class="btn btn-primary submit">Submit</button>
+            </div>
+        }
+    </div>
+
+</div>
+
+</html>
