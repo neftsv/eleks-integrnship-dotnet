@@ -58,28 +58,32 @@ public class UserDashboardController : Controller
         {
             return NotFound();
         }
-
-        if (ModelState.IsValid)
+        try
         {
-            try
+            var existingUser = _context.Users.Find(id);
+            if (existingUser == null)
             {
-                _context.Update(user);
-                _context.SaveChanges();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(user.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
+            existingUser.Name = user.Name;
+            existingUser.Surname = user.Surname;
+            existingUser.Patronimic = user.Patronimic;
+            existingUser.Email = user.Email;
+            existingUser.PhoneNumber = user.PhoneNumber;
+            _context.SaveChanges();
         }
-        return View(user);
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!UserExists(user.Id))
+            {
+                return NotFound();
+            }
+            else
+            {
+                throw;
+            }
+        }
+        return RedirectToAction(nameof(Index));
     }
     [HttpGet]
     public IActionResult OrderDetails(int orderId)
@@ -99,9 +103,14 @@ public class UserDashboardController : Controller
     }
     // GET: UserDashboard/EditPassword
     [HttpGet]
-    public IActionResult EditPassword()
+    public IActionResult EditPassword(int id)
     {
-        return View();
+        var user = _context.Users.FirstOrDefault(u => u.Id == id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return View(user);
     }
 
     // POST: UserDashboard/EditPassword
@@ -109,11 +118,6 @@ public class UserDashboardController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> EditPassword(Users model, IFormCollection form)
     {
-        if (!ModelState.IsValid)
-        {
-            return View(model);
-        }
-
         // Extracting password and confirmation from form collection
         string password = form["Password"];
         string passwordConfirmation = form["passwordConfirmation"];
@@ -121,26 +125,6 @@ public class UserDashboardController : Controller
         if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(passwordConfirmation))
         {
             ModelState.AddModelError("", "Please fill in all fields");
-            return View(model);
-        }
-        // Checking whether a user with such surname, first name and patronymic already exists in the database
-        if (_context.Users.Any(u => u.Name == model.Name && u.Surname == model.Surname && u.Patronimic == model.Patronimic))
-        {
-            ModelState.AddModelError("", "Such a user is already registered");
-            return View(model);
-        }
-
-        // Checking if the email entered by the user is valid
-        if (model.Email != null && !Regex.IsMatch(model.Email, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
-        {
-            ModelState.AddModelError("Email", "Please enter a valid email");
-            return View(model);
-        }
-
-        // Checking whether the phone number entered by the user is valid
-        if (model.PhoneNumber != null && !Regex.IsMatch(model.PhoneNumber, @"^\+?[0-9]{3}-?[0-9]{6,12}$"))
-        {
-            ModelState.AddModelError("PhoneNumber", "Please enter a valid phone number");
             return View(model);
         }
 
