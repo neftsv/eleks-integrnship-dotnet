@@ -11,10 +11,6 @@
             @foreach (var orderProduct in Model.OrdersProducts)
             {
                 <div class="mb-3">
-                    @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
-                    {
-                        <img src="@Url.Content(orderProduct.Products.Images.First().Url)" alt="Product Image" style="max-width: 50px; max-height: 50px;" />
-                    }
                     <span>@orderProduct.Products.Name</span><br />
                     <strong>Quantity:</strong> @orderProduct.Quantity<br />
                     <strong>Price:</strong> @orderProduct.Orders.TotalPrice<br />
