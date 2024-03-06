@@ -31,7 +31,7 @@ public class UserDashboardController : Controller
             return NotFound();
         }
         // Get all user posts from database
-        var userPosts = _context.BlogPosts.Where(post => post.AuthorId == user.Id).ToList();
+        var userPosts = _context.BlogPosts.Where(post => post.UserId == user.Id).ToList();
 
         // Submitting a user and their posts to a view
         ViewBag.UserPosts = userPosts;
