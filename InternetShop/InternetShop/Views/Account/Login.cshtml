@@ -1,34 +1,34 @@
 ﻿@model InternetShop.Models.LoginViewModel
 
 @{
-	ViewData["Title"] = "Login";
+    ViewData["Title"] = "Login";
 }
 
 <div class="row d-flex align-items-center justify-content-center">
-	<div class="col-md-3 card p-3">
-		<form asp-action="Login" method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div class="mb-3 or text-center">
-				<input type="submit" value="Sign in" class="btn btn-primary btn-lg btn-block or-login" />
-			</div>
-			<div class="mb-1 or">
-				<div class="text-center font-weight-bold">Or</div>
-			</div>
-			<div class="mb-1">
-				<label asp-for="Email" class="control-label"></label>
-				<input asp-for="Email" class="form-control" />
-				<span asp-validation-for="Email" class="text-danger"></span>
-			</div>
-			<div class="mb-1">
-				<label asp-for="Password" class="control-label"></label>
-				<input asp-for="Password" class="form-control" />
-				<span asp-validation-for="Password" class="text-danger"></span>
-			</div>
-			<div class="col-6 or text-center mb-3 or-button">
-				<a asp-controller="Users" asp-action="Create" class="btn btn-orange btn-lg btn-block or-register">Register</a>
-			</div>
-		</form>
-	</div>
+    <div class="col-md-3 card p-3">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3 or text-center">
+                <input type="submit" value="Sign in" class="btn btn-primary btn-register btn-lg btn-block or-login" />
+            </div>
+            <div class="mb-1 or">
+                <div class="text-center font-weight-bold">Or</div>
+            </div>
+            <div class="mb-1">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="mb-1">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="col-6 or text-center mb-3 or-button">
+                <a asp-controller="Users" asp-action="Create" class="btn btn-orange btn-register btn-lg btn-block or-register">Register</a>
+            </div>
+        </form>
+    </div>
 </div>
 
 
@@ -36,7 +36,7 @@
 
 
 @section Scripts {
-	@{
-		await Html.RenderPartialAsync("_ValidationScriptsPartial");
-	}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
