@@ -41,7 +41,7 @@ namespace InternetShop.Controllers
             string filename = "";
             if (blogPost1.Photo != null)
             {
-                string uploadfolder = Path.Combine(hostingenvironment.WebRootPath, "Image");
+                string uploadfolder = Path.Combine(hostingenvironment.WebRootPath, "BlogImages");
                 filename = Guid.NewGuid().ToString() + "_" + blogPost1.Photo.FileName;
                 string filepath = Path.Combine(uploadfolder, filename);
                 blogPost1.Photo.CopyTo(new FileStream(filepath, FileMode.Create));
