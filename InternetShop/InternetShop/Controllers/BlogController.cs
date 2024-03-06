@@ -3,16 +3,19 @@ using InternetShop.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace InternetShop.Controllers
 {
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IWebHostEnvironment hostingenvironment;
 
-        public BlogController(ApplicationDbContext context)
+        public BlogController(ApplicationDbContext? context, IWebHostEnvironment hc)
         {
             _context = context;
+            hostingenvironment = hc;
         }
 
         // GET: /Blog
@@ -33,22 +36,31 @@ namespace InternetShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Title,Content,Author")] BlogPost blogPost)
+        public async Task<IActionResult> Create(BlogPostVM blogPost1)
         {
-            if (ModelState.IsValid)
+            string filename = "";
+            if (blogPost1.Photo != null)
             {
-                // Отримання ідентифікатора поточного користувача
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
-
-                // Встановлення AuthorId для створеного поста на ідентифікатор користувача
-                blogPost.AuthorId = Convert.ToInt32(user?.Id);
-
-                blogPost.CreatedAt = DateTime.Now;
-                _context.Add(blogPost);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Blog");
+                string uploadfolder = Path.Combine(hostingenvironment.WebRootPath, "Image");
+                filename = Guid.NewGuid().ToString() + "_" + blogPost1.Photo.FileName;
+                string filepath = Path.Combine(uploadfolder, filename);
+                blogPost1.Photo.CopyTo(new FileStream(filepath, FileMode.Create));
             }
-            return View(blogPost);
+
+            var user = _context.Users.FirstOrDefault(x => x.Email == User.Identity.Name);
+            BlogPost p = new BlogPost
+            {
+                Title = blogPost1.Title,
+                Users = user,
+                UserId = user.Id,
+                Content = blogPost1.Content,
+                Author = blogPost1.Author,
+                image = filename
+            };
+            _context.BlogPosts.Add(p);
+            _context.SaveChanges();
+            ViewBag.success = "Record added";
+            return RedirectToAction("Index", "Blog");
         }
 
         // GET: /Blog/Edit/5
@@ -72,18 +84,31 @@ namespace InternetShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,CreatedAt, Author")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,CreatedAt,Author,Image")] BlogPost blogPost)
         {
             if (id != blogPost.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (blogPost.image == null)
             {
                 try
                 {
-                    _context.Update(blogPost);
+                    // Retrieve the existing entity from the database
+                    var existingBlogPost = await _context.BlogPosts.FindAsync(id);
+                    if (existingBlogPost == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the properties of the existing entity
+                    existingBlogPost.Title = blogPost.Title;
+                    existingBlogPost.Content = blogPost.Content;
+                    existingBlogPost.CreatedAt = blogPost.CreatedAt;
+                    existingBlogPost.Author = blogPost.Author;
+
+                    // Save the changes
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -97,9 +122,11 @@ namespace InternetShop.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
-            return View(blogPost);
+
+            return NotFound();
         }
 
         // GET: /Blog/Delete/5
