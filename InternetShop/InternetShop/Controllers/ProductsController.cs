@@ -1,20 +1,22 @@
-﻿using InternetShop.Interface;
+﻿using InternetShop.Data;
+using InternetShop.Interface;
 using InternetShop.Models;
 using InternetShop.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace InternetShop.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly IProductsRepository _productsRepository;
-
-        public ProductsController(IProductsRepository productsRepository)
+        private readonly ApplicationDbContext _context;
+        public ProductsController(IProductsRepository productsRepository, ApplicationDbContext context)
         {
             _productsRepository = productsRepository;
+            _context = context;
         }
-
         [HttpGet]
         public async Task<IActionResult> Index(ICollection<int> categoryId, string productName,string sortMethod = "def", int page = 1)
         {
@@ -66,6 +68,71 @@ namespace InternetShop.Controllers
 
             var pagination = await _productsRepository.PaginationProductsAsync(page, model);
             return View(pagination);
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var product = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.Id == id);
+
+            if (product == null /*|| !product.IsApproved*/)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,Name,Description,Price")] Products product)
+        {
+            if (id != product.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(product);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProductExists(product.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(product);
+        }
+
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.Id == id);
         }
     }
 }

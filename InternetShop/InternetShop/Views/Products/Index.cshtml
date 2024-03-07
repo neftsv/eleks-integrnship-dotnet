@@ -194,7 +194,7 @@
                             <img src="@item.Images[0].Url" class="prod-img" alt="...">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title"><b>@item.Name</b></h5>
+                            <h5 class="card-title"><b><a asp-action="Details" asp-route-id="@item.Id">@item.Name</a></b></h5>
                             <p class="card-text">@item.Price UAH</p>
                         </div>
                     </div>
