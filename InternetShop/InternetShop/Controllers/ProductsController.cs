@@ -100,19 +100,28 @@ namespace InternetShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,Name,Description,Price")] Products product)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,Images,Description,Price")] Products product)
         {
-            if (id != product.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
+            var existingProduct = await _context.Products.FindAsync(id);
+            if (true)
             {
                 try
                 {
-                    _context.Update(product);
+                    
+                    if (existingProduct == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the properties of the existing entity
+                    existingProduct.CategoryId= product.CategoryId;
+                    existingProduct.Name = product.Name;
+                    existingProduct.Images = product.Images;
+                    existingProduct.Description = product.Description;
+                    existingProduct.Price = product.Price;
+
                     await _context.SaveChangesAsync();
+                    //return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -127,7 +136,7 @@ namespace InternetShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(product);
+            return NotFound();
         }
 
         private bool ProductExists(int id)
