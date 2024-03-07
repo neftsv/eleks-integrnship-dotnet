@@ -1,66 +1,140 @@
 ﻿@model InternetShop.Models.Products
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-
 *@
 
-@{
+@{ 
     ViewData["Title"] = Model.Name;
-    <h1>Product details</h1>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    </head>
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <div>
-            <div><h3>--Image--</h3></div>
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-indicators">
-                        @for (int i = 0; i < Model.Images.Count; i++)
-                        {
-                            if (i == 0)
-                            {
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="active" aria-current="true" aria-label="Slide @i"></button>
-                            }
-                            else
-                            {
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
-                            }
-                        }
-                    </div>
-                    <div class="carousel-inner">
-                        @for (int i = 0; i < Model.Images.Count; i++)
-                        {
-                            if (i == 0)
-                            {
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="@Model.Images[i].Url" alt="...">
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" src="@Model.Images[i].Url" alt="...">
-                                </div>
-                            }
-                        }
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            <div>
-                <h3>@Model.Name</h3>
-                <p>@Model.Description</p>
-                <h5>@Model.Price</h5>
-            </div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-        </div>
-    </body>
 }
+
+<h1>Product details</h1>
+    <div>
+        <div><h3>--Image--</h3></div>
+        <div class="slider">
+            <ul id="slides" class="slides">
+                @foreach (var item in Model.Images)
+                {
+                    <li>
+                        @if (@item.Url.Contains("http"))
+                        {
+                            <img class="pruduct-img" src="@item.Url" alt="Image 1">
+                        }
+                        else
+                        {
+                            <img class="pruduct-img" src="/ProdImages/@item.Url" alt="Image 1">
+                        }
+                    </li>
+                }
+            </ul>
+            <button class="prev" onclick="moveSlide(-1)">❮</button>
+            <button class="next" onclick="moveSlide(1)">❯</button>
+        </div>
+        <div>
+            <h3>@Model.Name</h3>
+            <p>@Model.Description</p>
+            <h5>@Model.Price</h5>
+        </div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    </div>
+
+<script>
+    let currentIndex = 0;
+    const childrenCount = document.querySelector('.slides').childElementCount;
+
+    document.getElementById("slides").style.width = 400 * childrenCount + 'px'
+
+    function moveSlide(direction) {
+        const slides = document.querySelector('.slides');
+        const slideWidth = document.querySelector('.slider').offsetWidth;
+
+        currentIndex = (currentIndex + direction) % childrenCount;
+        if (currentIndex < 0) {
+            currentIndex = childrenCount - 1; // Loop back to the last slide when at the beginning
+        }
+        slides.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    $('.btn-minus').click(function () {
+        var input = $(this).parent().find('.quantity');
+        var value = parseInt(input.val());
+        if (value > 1) {
+            input.val(value - 1);
+        }
+    });
+
+    $('.btn-plus').click(function () {
+        var input = $(this).parent().find('.quantity');
+        var value = parseInt(input.val());
+        input.val(value + 1);
+    });
+
+</script>
+
+<style>
+
+    .slider {
+        position: relative;
+        width: 400px; /* Set width to 300px */
+        height: 400px; /* Set height to 300px */
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .slides {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        transition: transform 0.5s ease;
+    }
+
+        .slides li {
+            float: left;
+            width: 400px; /* Each slide takes 300px width */
+            height: 400px; /* Each slide takes 300px height */
+        }
+
+    .pruduct-img {
+        max-width: 100%; /* Ensures the image does not exceed the container width */
+        max-height: 400px; /* Set your desired maximum height */
+        width: auto; /* Allows the image to scale proportionally */
+        height: auto; /* Allows the image to scale proportionally */
+    }
+
+    li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        color: orange;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+        .prev:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            border-radius: 5px 0 0 5px;
+        }
+
+    .prev {
+        left: 0;
+    }
+
+    .next {
+        right: 0;
+    }
+</style>
