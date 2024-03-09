@@ -20,5 +20,6 @@ namespace InternetShop.Models
         public virtual Carts Cart { get; set; }
         public virtual List<UsersProducts> UsersProducts { get; set; }
         public virtual List<Orders> Orders { get; set; }
+        public virtual List<BlogPost> BlogPost { get; set; }
     }
 }
