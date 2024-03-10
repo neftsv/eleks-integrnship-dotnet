@@ -26,9 +26,6 @@
 }
 
 <style>
-    .pb-3{
-        padding: 0 !important;
-    }
 
     main{
         min-height:100%;
@@ -54,13 +51,6 @@
         height: fit-content;
     }
 
-    .container{
-        width:100%;
-        max-width:100%;
-        height:100%;
-        margin: 0;
-        padding: 0;
-    }
 
     .card{
         height:100%;
@@ -155,7 +145,12 @@
                 </div>
             }
             <br />
+            <input value="@sortMethod" name="sortMethod" hidden />
             <button class="btn-apply" type="submit">Apply</button>
+            @if (checkedTypes != null)
+            {
+                <a class="text-danger text-center" style="text-decoration-style: dotted; margin-top: 15px" href="@Url.Action("Index", new { productName, sortMethod})">Clear filter</a>
+            }
         </form>
     </div>
 
@@ -169,7 +164,7 @@
             </button>
 
             <div class="dropdown">
-                <button class="dropbtn">
+                <button class="dropbtn" type="button">
                     <img src="~/images/filter.png"
                          width="30"
                          height="30" />

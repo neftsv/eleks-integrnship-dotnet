@@ -18,19 +18,10 @@ namespace InternetShop.Repository
 
         public async Task<ICollection<Products>> GetAllProductsAsync()
         {
-            return await _context.Products.Select(p => new Products
-            {
-                Price = p.Price,
-                Categories = p.Categories,
-                CategoryId = p.CategoryId,
-                Description = p.Description,
-                Id = p.Id,
-                Name = p.Name,
-                Images = p.Images,
-                OrdersProducts = p.OrdersProducts,
-                UsersProducts = p.UsersProducts,
-            })
-            .ToListAsync();
+            return await _context.Products.Include(p => p.OrdersProducts)
+                .Include(p => p.Categories)
+                .Include(p => p.Images)
+                .ToListAsync();
         }
 
 
