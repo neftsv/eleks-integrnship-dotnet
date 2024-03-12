@@ -493,3 +493,10 @@ h-userdb {
 .current-item .progress-count {
     color: #fff;
 }
+
+.img_dashboard {
+    max-height: 260px;
+    max-width: 300px;
+    width: fit-content;
+    height: fit-content;
+}
