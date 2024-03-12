@@ -102,6 +102,52 @@ public class UserDashboardController : Controller
 
         return View(order);
     }
+    [HttpGet]
+    public async Task<IActionResult> ChangeOrderStatus()
+    {
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        int userId = user.Id;
+
+        var productIds = await _context.OrdersProducts
+                                    .Where(op => op.Orders.UserId != user.Id)
+                                    .Select(op => op.ProductId)
+                                    .Distinct()
+                                    .ToListAsync();
+
+        var products = await _context.Products
+                                    .Include(p => p.Categories)
+                                    .Where(p => productIds.Contains(p.Id) && p.UsersProducts.Any(up => up.UserId == userId))
+                                    .ToListAsync();
+
+        return View(products);
+    }
+    [HttpPost]
+    [Route("ChangeOrderStatus/SaveOrderStatus")]
+    public async Task<IActionResult> SaveOrderStatus(int[] productIds, int[] statuses)
+    {
+        for (int i = 0; i < productIds.Length; i++)
+        {
+            var productId = productIds[i];
+            var status = statuses[i];
+
+            var existingProduct = await _context.OrdersProducts.FirstOrDefaultAsync(op => op.ProductId == productId);
+
+            if (existingProduct != null)
+            {
+                existingProduct.Status = status;
+            }
+        }
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(Index));
+    }
     // GET: UserDashboard/EditPassword
     [HttpGet]
     public IActionResult EditPassword(int id)
