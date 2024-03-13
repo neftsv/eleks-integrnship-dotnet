@@ -73,14 +73,22 @@ namespace InternetShop.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var product = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.Id == id);
+            var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
+            {
+                Id = p.ProductId,
+                UserId = p.UserId,
+                CategoryId = p.Products.CategoryId,
+                Images = p.Products.Images,
+                Name = p.Products.Name,
+                Price = p.Products.Price,
+                Description = p.Products.Description
+            }).FirstOrDefault();
 
-            if (product == null /*|| !product.IsApproved*/)
+            if (model == null)
             {
                 return NotFound();
             }
-
-            return View(product);
+            return View(model);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -90,12 +98,22 @@ namespace InternetShop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
+            {
+                Id = p.ProductId,
+                UserId = p.UserId,
+                CategoryId = p.Products.CategoryId,
+                Images = p.Products.Images,
+                Name = p.Products.Name,
+                Price = p.Products.Price,
+                Description = p.Products.Description
+            }).FirstOrDefault();
+
+            if (model == null)
             {
                 return NotFound();
             }
-            return View(product);
+            return View(model);
         }
 
         [HttpPost]
