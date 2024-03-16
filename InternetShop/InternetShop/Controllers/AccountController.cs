@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using InternetShop.Models;
 using InternetShop.Data;
 using Microsoft.AspNetCore.Authentication;
+using InternetShop.Interface;
+using InternetShop.Services;
 
 namespace InternetShop.Controllers
 {
@@ -33,36 +35,44 @@ namespace InternetShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _context.Users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
-
-                if (user != null)
+                var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
+                
+                if (user == null)
                 {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, user.Email ?? string.Empty),
-                        new Claim(ClaimTypes.Role, user.RoleId.ToString())
-                        // Додайте інші потрібні вам ролі або дані користувача як клейми
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(
-                        claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                    var authProperties = new AuthenticationProperties
-                    {
-                        // Ваші властивості автентифікації, якщо такі є
-                    };
-
-                    await HttpContext.SignInAsync(
-                        CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(claimsIdentity),
-                        authProperties);
-
-                    return RedirectToAction("Index", "Home"); // Перенаправлення на домашню сторінку після успішної авторизації
+                    ModelState.AddModelError(string.Empty, "User does not exist");
+                    return View(model);
                 }
 
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                if(!PasswordManager.VerifyPassword(user.Password, model.Password))
+                {
+                    ModelState.AddModelError(string.Empty, "Incorrect password");
+                    return View(model);
+                }
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, user.Email ?? string.Empty),
+                    new Claim(ClaimTypes.Role, user.RoleId.ToString())
+                    // Додайте інші потрібні вам ролі або дані користувача як клейми
+                };
+
+                var claimsIdentity = new ClaimsIdentity(
+                    claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var authProperties = new AuthenticationProperties
+                {
+                    // Ваші властивості автентифікації, якщо такі є
+                };
+
+                await HttpContext.SignInAsync(
+                    CookieAuthenticationDefaults.AuthenticationScheme,
+                    new ClaimsPrincipal(claimsIdentity),
+                    authProperties);
+
+                    return RedirectToAction("Index", "Home"); // Перенаправлення на домашню сторінку після успішної авторизації
             }
 
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(model);
         }
 
