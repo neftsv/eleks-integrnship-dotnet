@@ -21,7 +21,7 @@
                         }
                         else
                         {
-                            <img class="pruduct-img" src="/ProdImages/@item.Url" alt="Image 1">
+                            <img class="pruduct-img" src="/ProductImages/@item.Url" alt="Image 1">
                         }
                     </li>
                 }
@@ -35,6 +35,17 @@
             <h5>@Model.Price</h5>
         </div>
         <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <form asp-action="Delete" asp-controller="Products" asp-route-id="@Model.Id" method="post" class="text-center mt-3">
+        <div>
+            <button type="submit" class="btn btn-warning text-white mr-2">Delete</button>
+        </div>
+    </form>
+    <form asp-action="AddToCart" asp-controller="Products" asp-route-id="@Model.Id" method="post" class="text-center mt-3">
+        <div>
+            <input type="number" min="1" required value="1" name="quantity"/>
+            <button type="submit" class="btn btn-warning text-white mr-2">Add to cart</button>
+        </div>
+    </form>
     </div>
 
 <script>

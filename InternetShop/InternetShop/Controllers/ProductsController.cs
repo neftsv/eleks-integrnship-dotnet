@@ -12,10 +12,12 @@ namespace InternetShop.Controllers
     {
         private readonly IProductsRepository _productsRepository;
         private readonly ApplicationDbContext _context;
-        public ProductsController(IProductsRepository productsRepository, ApplicationDbContext context)
+        private IWebHostEnvironment _hostingenvironment;
+        public ProductsController(IProductsRepository productsRepository, ApplicationDbContext context, IWebHostEnvironment hostingenvironment)
         {
             _productsRepository = productsRepository;
             _context = context;
+            this._hostingenvironment = hostingenvironment;
         }
         [HttpGet]
         public async Task<IActionResult> Index(ICollection<int> categoryId, string productName,string sortMethod = "def", int page = 1)
@@ -91,8 +93,10 @@ namespace InternetShop.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "2, 3")]
         public async Task<IActionResult> Edit(int? id)
         {
+            var user = User;
             if (id == null)
             {
                 return NotFound();
@@ -118,6 +122,7 @@ namespace InternetShop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,Images,Description,Price")] Products product)
         {
             var existingProduct = await _context.Products.FindAsync(id);
@@ -156,7 +161,90 @@ namespace InternetShop.Controllers
             }
             return NotFound();
         }
+        [Authorize]
+        public IActionResult Create()
+        {
+            return View();
+        }
 
+        // POST: /Blog/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Create(ProductCreateViewModel product)
+        {
+            string filename = "";
+            var images = new List<Images>();
+            if (product.Images != null)
+            {
+                string uploadfolder = Path.Combine(_hostingenvironment.WebRootPath, "ProductImages");
+                foreach (var image in product.Images)
+                {
+                    filename = Guid.NewGuid().ToString() + "_" + image.FileName;
+                    string filepath = Path.Combine(uploadfolder, filename);
+                    image.CopyTo(new FileStream(filepath, FileMode.Create));
+                    images.Add(new Images { Url = filename });
+                }
+            }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+            var prod = new Products
+            {
+                UsersProducts = new List<UsersProducts> { new UsersProducts { Users = user, UserId = user.Id } },
+                CategoryId = product.CategoryId,
+                Images = images,
+                Name = product.Name,
+                Price = product.Price,
+                Description = product.Description
+            };
+            //product.UserId = Convert.ToInt32(user?.Id);
+
+            _context.Add(prod);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Products");
+
+            //return View(product);
+        }
+
+        [Authorize(Roles = "2, 3")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            _context.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddToCart(int id, int quantity)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == User.Identity.Name);
+            var cartExist = await _context.Carts.FirstOrDefaultAsync(c => c.UserId == user.Id);
+            if(cartExist == null) 
+            {
+                var cart = new CartsProducts
+                {
+                    Quantity = quantity,
+                    Carts = new Carts
+                    {
+                        User = user,
+                        UserId = user.Id,
+                    },
+                    ProductId = id,
+                };
+                _context.Add(cart);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Basket");
+            }
+            var cart1 = new CartsProducts
+            {
+                Quantity = quantity,
+                Carts = cartExist,
+                ProductId = id,
+            };
+            _context.Add(cart1);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Basket");
+        }
         private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
