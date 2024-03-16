@@ -1,4 +1,5 @@
 ﻿using InternetShop.Models;
+using InternetShop.Services;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using System.Diagnostics;
 using System.Net;
@@ -55,7 +56,7 @@ namespace InternetShop.Data
                     var user1 = new Users
                     {
                         Email = "ivanenko.oleksandr@example.com",
-                        Password = "11AAivanenko",
+                        Password = PasswordManager.HashPassword("11AAivanenko"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380987654321",
@@ -405,7 +406,7 @@ namespace InternetShop.Data
                     var user2 = new Users
                     {
                         Email = "anna.kovalchuk@example.com",
-                        Password = "11AAanna",
+                        Password = PasswordManager.HashPassword("11AAanna"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380955555555",
@@ -752,7 +753,7 @@ namespace InternetShop.Data
                     var user3 = new Users
                     {
                         Email = "iryna.petrenko@example.com",
-                        Password = "11AAiryna",
+                        Password = PasswordManager.HashPassword("11AAiryna"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380933333333",
@@ -1037,7 +1038,7 @@ namespace InternetShop.Data
                     var user4 = new Users
                     {
                         Email = "volodymyr.sydorenko@example.com",
-                        Password = "11AAvolodymyr",
+                        Password = PasswordManager.HashPassword("11AAvolodymyr"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380922222222",
@@ -1364,7 +1365,7 @@ namespace InternetShop.Data
                     var user5 = new Users
                     {
                         Email = "marina.grishchenko@example.com",
-                        Password = "11AAmarina",
+                        Password = PasswordManager.HashPassword("11AAmarina"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380911111111",
@@ -1691,7 +1692,7 @@ namespace InternetShop.Data
                     var user6 = new Users
                     {
                         Email = "oleg.lysenko@example.com",
-                        Password = "11AAoleg",
+                        Password = PasswordManager.HashPassword("11AAoleg"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380944444444",
@@ -2005,7 +2006,7 @@ namespace InternetShop.Data
                     var user7 = new Users
                     {
                         Email = "tatyana.shevchenko@example.com",
-                        Password = "11AAtatyana",
+                        Password = PasswordManager.HashPassword("11AAtatyana"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380977777777",
@@ -2283,7 +2284,7 @@ namespace InternetShop.Data
                     var user8 = new Users
                     {
                         Email = "dmitro.bondarenko@example.com",
-                        Password = "11AAdmitro",
+                        Password = PasswordManager.HashPassword("11AAdmitro"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380966666666",
@@ -2533,7 +2534,7 @@ namespace InternetShop.Data
                     var user9 = new Users
                     {
                         Email = "oksana.melnyk@example.com",
-                        Password = "11AAoksana",
+                        Password = PasswordManager.HashPassword("11AAoksana"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380988888888",
@@ -2855,7 +2856,7 @@ namespace InternetShop.Data
                     var user10 = new Users
                     {
                         Email = "inna.kozlova@example.com",
-                        Password = "11AAinna",
+                        Password = PasswordManager.HashPassword("11AAinna"),
                         RoleId = userRole.Id,
                         Roles = userRole,
                         PhoneNumber = "380999999999",
@@ -3169,7 +3170,7 @@ namespace InternetShop.Data
                     var user11 = new Users
                     {
                         Email = "andrey.fedorenko@example.com",
-                        Password = "11AAandrey",
+                        Password = PasswordManager.HashPassword("11AAandrey"),
                         RoleId = moderatorRole.Id,
                         Roles = moderatorRole,
                         PhoneNumber = "380956784512",
@@ -3183,7 +3184,7 @@ namespace InternetShop.Data
                     var user12 = new Users
                     {
                         Email = "viktor.pavlenko@example.com",
-                        Password = "11AAviktor",
+                        Password = PasswordManager.HashPassword("11AAviktor"),
                         RoleId = adminRole.Id,
                         Roles = adminRole,
                         PhoneNumber = "380945678934",
