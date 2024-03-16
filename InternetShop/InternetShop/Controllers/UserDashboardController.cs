@@ -9,6 +9,7 @@ using InternetShop.Data;
 using InternetShop.Models;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
+using InternetShop.Services;
 
 public class UserDashboardController : Controller
 {
@@ -168,6 +169,7 @@ public class UserDashboardController : Controller
         // Extracting password and confirmation from form collection
         string password = form["Password"];
         string passwordConfirmation = form["passwordConfirmation"];
+
         // Checking if the password and confirmation are not null or empty
         if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(passwordConfirmation))
         {
@@ -200,14 +202,16 @@ public class UserDashboardController : Controller
             return NotFound();
         }
 
-        // Obtaining and changing a user's password
-        user.Password = model.Password;
+        // Hashing the new password before saving it
+        string hashedPassword = PasswordManager.HashPassword(password);
+        user.Password = hashedPassword;
 
         _context.Update(user);
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
     }
+
     [HttpGet]
     [Authorize(Roles = "2,3")]
     public IActionResult Adminpannel()

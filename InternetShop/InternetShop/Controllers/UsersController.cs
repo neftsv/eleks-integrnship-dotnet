@@ -9,6 +9,7 @@ using InternetShop.Data;
 using InternetShop.Models;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
+using InternetShop.Services;
 
 namespace InternetShop.Controllers
 {
@@ -130,6 +131,10 @@ namespace InternetShop.Controllers
             {
                 users.RoleId = defaultRoleId; // Assigning a role to a user
 
+                // Hashing the new password before saving it
+                var hashPass = PasswordManager.HashPassword(form["Password"]); 
+                users.Password = hashPass;
+
                 _context.Add(users);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Login", "Account");
@@ -163,6 +168,11 @@ namespace InternetShop.Controllers
             {
                 return NotFound();
             }
+
+            // Hashing the new password before saving it
+            var hashPass = PasswordManager.HashPassword(users.Password);
+            users.Password = hashPass;
+
             try
             {
                 _context.Update(users);
