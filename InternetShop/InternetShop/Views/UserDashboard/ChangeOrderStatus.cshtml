@@ -1,5 +1,13 @@
 ﻿@model List<InternetShop.Models.Products>
 
+@if (Model.Count == 0)
+{
+    <div class="alert alert-danger">
+        <p>No products found.</p>
+    </div>
+}
+else
+{
 <form method="post" action="@Url.Action("SaveOrderStatus", "ChangeOrderStatus")">
     <table class="table table-striped">
         <thead>
@@ -17,8 +25,8 @@
             {
                 <tr>
                     <td>@Model[i].Id</td>
-                    <td>@Model[i].Name</td>
-                    <td>@Model[i].Description</td>
+                    <td style="max-width: auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">@Model[i].Name</td>
+                    <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">@Model[i].Description</td>
                     <td>@Model[i].Price</td>
                     <td>
                         <input type="hidden" name="productIds[@i]" value="@Model[i].Id">
@@ -40,3 +48,4 @@
         </tbody>
     </table>
 </form>
+}
