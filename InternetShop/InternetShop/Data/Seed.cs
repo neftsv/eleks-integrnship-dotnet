@@ -53,6 +53,108 @@ namespace InternetShop.Data
 
                     //Users=-------------------------------------
 
+                    var CortC4Deluxe = new Products
+                    {
+                        Name = "Бас-гітара Cort C4 Deluxe",
+                        Description = "Кількість струн: 4\r\nМензура: 34\"",
+                        Price = 15675m,
+                        Categories = bassGuitars,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/409648772.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/409648773.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/409648774.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/409648775.jpg"
+                            },
+                        }
+                    };
+                    var AppleIPhoneEarPods = new Products
+                    {
+                        Name = "Навушники Apple iPhone EarPods",
+                        Description = "Тип навушників: Вкладки",
+                        Price = 999m,
+                        Categories = headphone,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/10813688.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(CortC4Deluxe, AppleIPhoneEarPods);
+
+                    var HPPavilion = new Products
+                    {
+                        Name = "Ноутбук HP Pavilion 15-eg3027ua",
+                        Description = "Екран 15.6\" IPS (1920x1080) Full HD, матовий / Intel Core i5-1335U (3.4 - 4.6 ГГц) / RAM 16 ГБ / SSD 512 ГБ / Intel Iris Xe Graphics / без ОД / Wi-Fi / Bluetooth / веб-камера / DOS / 1.74 кг / сріблястий",
+                        Price = 24999m,
+                        Categories = laptops,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/375424609.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/375424610.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/375424611.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/375424612.jpg"
+                            },
+                        }
+                    };
+                    var SamsungGalaxyA34 = new Products
+                    {
+                        Name = "Мобільний телефон Samsung Galaxy A34",
+                        Description = "Екран (6.6\", Super AMOLED, 2340x1080) / Mediatek Dimensity 1080 (2 x 2.6 ГГц + 6 x 2.0 ГГц) / основна потрійна камера: 48 Мп + 8 Мп + 5 Мп, фронтальна камера: 13 Мп/ RAM 8 ГБ / 256 ГБ вбудованої пам'яті + microSD (до 1 ТБ) / 3G / LTE / 5G / GPS / A-GPS / ГЛОНАСС / BDS / підтримка 2х SIM-карток (Nano-SIM) / Android 13 / 5000 мА * год",
+                        Price = 12499m,
+                        Categories = mobilePhones,
+                        Images = new List<Images>
+                                {
+                                    new Images
+                                    {
+                                        Url = "https://content1.rozetka.com.ua/goods/images/big/319594401.jpg"
+                                    },
+                                    new Images
+                                    {
+                                        Url = "https://content.rozetka.com.ua/goods/images/big/319594402.jpg"
+                                    },
+                                    new Images
+                                    {
+                                        Url = "https://content2.rozetka.com.ua/goods/images/big/319594403.jpg"
+                                    },
+                                    new Images
+                                    {
+                                        Url = "https://content1.rozetka.com.ua/goods/images/big/319594405.jpg"
+                                    },
+                                    new Images
+                                    {
+                                        Url = "https://content2.rozetka.com.ua/goods/images/big/319594406.jpg"
+                                    },
+                                }
+                    };
+
+                    await context.AddRangeAsync(HPPavilion, SamsungGalaxyA34);
+
                     var user1 = new Users
                     {
                         Email = "ivanenko.oleksandr@example.com",
@@ -187,32 +289,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Ноутбук HP Pavilion 15-eg3027ua",
-                                    Description = "Екран 15.6\" IPS (1920x1080) Full HD, матовий / Intel Core i5-1335U (3.4 - 4.6 ГГц) / RAM 16 ГБ / SSD 512 ГБ / Intel Iris Xe Graphics / без ОД / Wi-Fi / Bluetooth / веб-камера / DOS / 1.74 кг / сріблястий",
-                                    Price = 24999m,
-                                    Categories = laptops,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/375424609.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/375424610.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/375424611.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/375424612.jpg"
-                                        },
-                                    }
-                                },
+                                Products = HPPavilion,
                             },
                             new UsersProducts
                             {
@@ -348,36 +425,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Мобільний телефон Samsung Galaxy A34",
-                                    Description = "Екран (6.6\", Super AMOLED, 2340x1080) / Mediatek Dimensity 1080 (2 x 2.6 ГГц + 6 x 2.0 ГГц) / основна потрійна камера: 48 Мп + 8 Мп + 5 Мп, фронтальна камера: 13 Мп/ RAM 8 ГБ / 256 ГБ вбудованої пам'яті + microSD (до 1 ТБ) / 3G / LTE / 5G / GPS / A-GPS / ГЛОНАСС / BDS / підтримка 2х SIM-карток (Nano-SIM) / Android 13 / 5000 мА * год",
-                                    Price = 12499m,
-                                    Categories = mobilePhones,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/319594401.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/319594402.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/319594403.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/319594405.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/319594406.jpg"
-                                        },
-                                    }
-                                },
+                                Products = SamsungGalaxyA34,
                             },
                         },
                         BlogPost = new List<BlogPost>
@@ -398,10 +446,107 @@ namespace InternetShop.Data
                                 Content = "🌟 Поглиблений екран: Живи кожним кадром на вражаючому OLED Super Retina XDR дисплеї розміром 6.7\" з неймовірною роздільною здатністю 2796x1290. Кожен дотик — нова порція задоволення.\r\n\r\n🚀 Потужний двигун: Запускай додатки миттєво та виконуй завдання швидше за будь-коли завдяки процесору Apple A17 Pro. Почуй потужність на власному досвіді!\r\n\r\n📸 Очікуй на дива: Запечатлюй найяскравіші моменти свого життя з основною квадро-камерою у складі 48 Мп + 12 Мп + 12 Мп + 12 Мп та фронтальною камерою на 12 Мп. Кожен знімок — шедевр від Apple.\r\n\r\n📱 Необмежені можливості: Зберігай свої найцінніші моменти без обмежень завдяки вбудованій пам'яті на 256 ГБ. Всі твої додатки, фотографії та відео завжди під рукою.\r\n\r\n📶 Підключення до майбутнього: Вперед до швидкісного майбутнього з підтримкою 3G, LTE та 5G. Будь завжди на зв'язку та готовий до нових викликів.\r\n\r\n📍 Навігація без меж: Не загубишся ніде завдяки GPS. Впевнено вперед до нових вражень та пригод з iPhone 15 Pro Max!\r\n\r\n📱 Працюй як професіонал: Використовуй iOS 17 — найновішу операційну систему від Apple — і насолоджуйся новими функціями та можливостями!\r\n\r\nЗахопи світ у своїх руках з Apple iPhone 15 Pro Max! 🚀📱",
                                 image = "Apple iPhone 15 Pro Max.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = CortC4Deluxe.Price,
+                                Date = DateTime.Now,
+                                DeliveryAddress = "Вулиця Лісова, 10, Київ",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = CortC4Deluxe.Id,
+                                        Products = CortC4Deluxe,
+                                        Quantity = 1,
+                                        Status = 1,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = AppleIPhoneEarPods.Price,
+                                Date = DateTime.Now.AddDays(-2),
+                                DeliveryAddress = "Вулиця Лісова, 10, Київ",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = AppleIPhoneEarPods.Id,
+                                        Products = AppleIPhoneEarPods,
+                                        Quantity = 1,
+                                        Status = 3,
+                                    }
+                                }
+                            }
                         }
                     };
 
                     await context.AddAsync(user1);
+
+                    var LenovoIdeaPad3 = new Products
+                    {
+                        Name = "Ноутбук Lenovo IdeaPad 3 15IAU7",
+                        Description = "Экран 15.6\" IPS (1920x1080) Full HD, матовый / Intel Core i5-1235U (0.9 - 4.4 ГГц) / RAM 16 ГБ / SSD 512 ГБ / Intel Iris Xe Graphics / без ОД / Wi-Fi / Bluetooth / веб-камера / без ОС / 1.63 кг / серый",
+                        Price = 22999m,
+                        Categories = laptops,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/374343935.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/374343936.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/374343937.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/374343938.jpg"
+                            },
+                        }
+                    };
+                    var AppleIPhone15 = new Products
+                    {
+                        Name = "Мобільний телефон Apple iPhone 15 Pro",
+                        Description = "Екран (6.1\", OLED (Super Retina XDR), 2556x1179) / Apple A17 Pro / основна квадро-камера: 48 Мп + 12 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 128 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
+                        Price = 49999m,
+                        Categories = mobilePhones,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/364824496.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/364824495.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/364824497.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/364824498.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/364824499.jpg"
+                            },
+                        },
+                    };
+
+                    await context.AddRangeAsync(LenovoIdeaPad3, AppleIPhone15);
 
                     var user2 = new Users
                     {
@@ -417,32 +562,7 @@ namespace InternetShop.Data
                         {
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Ноутбук Lenovo IdeaPad 3 15IAU7",
-                                    Description = "Экран 15.6\" IPS (1920x1080) Full HD, матовый / Intel Core i5-1235U (0.9 - 4.4 ГГц) / RAM 16 ГБ / SSD 512 ГБ / Intel Iris Xe Graphics / без ОД / Wi-Fi / Bluetooth / веб-камера / без ОС / 1.63 кг / серый",
-                                    Price = 22999m,
-                                    Categories = laptops,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/374343935.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/374343936.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/374343937.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/374343938.jpg"
-                                        },
-                                    }
-                                },
+                                Products = LenovoIdeaPad3,
                             },
                             new UsersProducts
                             {
@@ -562,36 +682,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Мобільний телефон Apple iPhone 15 Pro",
-                                    Description = "Екран (6.1\", OLED (Super Retina XDR), 2556x1179) / Apple A17 Pro / основна квадро-камера: 48 Мп + 12 Мп + 12 Мп + 12 Мп, фронтальна камера: 12 Мп / 128 ГБ вбудованої пам'яті / 3G / LTE / 5G / GPS / Nano-SIM / iOS 17",
-                                    Price = 49999m,
-                                    Categories = mobilePhones,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/364824496.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/364824495.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/364824497.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/364824498.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/364824499.jpg"
-                                        },
-                                    }
-                                },
+                                Products = AppleIPhone15,
                             },
                             new UsersProducts
                             {
@@ -744,11 +835,92 @@ namespace InternetShop.Data
                                 Content = "🌌 Відкрий для себе безмежний світ на екрані Dynamic AMOLED 2X розміром 6.8\" з роздільною здатністю 3088x1440. Живи кожним пікселем з яскравими кольорами та неймовірною деталізацією.\r\n\r\n🚀 Майбутнє у твоїх руках: Проведи кожен крок з новим процесором Qualcomm Snapdragon 8 Gen 2 for Galaxy, що працює на чотирьох ядрах зі швидкістю до 3.36 ГГц. Відчуй максимальну продуктивність в кожній дії.\r\n\r\n📸 Вражаюча камера: Запечатлюй кожен момент з основною квадро-камерою на 200 Мп + 12 Мп + 10 Мп + 10 Мп, що доповнюється потужною фронтальною камерою на 12 Мп. Твої фото та відео будуть завжди бездоганними.\r\n\r\n💡 Неймовірна продуктивність: Велика оперативна пам'ять на 12 ГБ та ще більший обсяг вбудованої пам'яті на 512 ГБ забезпечать швидкий доступ до всіх твоїх даних та додатків.\r\n\r\n📶 Підключення до майбутнього: Насолоджуйся швидкістю 5G та завжди будь на зв'язку завдяки підтримці 3G та LTE. Де б ти не був, твій Samsung Galaxy S23 Ultra завжди буде на зв'язку.\r\n\r\n📍 Нові горизонти з GPS: Завжди знаходь свій шлях з надійною підтримкою GPS в твоєму смартфоні.\r\n\r\n📱 Працюй на Android 13: Нова версія операційної системи від Google готова до найсміливіших ідей та проектів.\r\n\r\nЗавдяки максимальній потужності, неймовірній камері та швидкісному підключенню, Samsung Galaxy S23 Ultra — твій вірний супутник у світі інновацій! 💫📸",
                                 image = "Samsung Galaxy S23 Ultra.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = HPPavilion.Price + SamsungGalaxyA34.Price,
+                                Date = DateTime.Now.AddDays(-3),
+                                DeliveryAddress = "Вулиця Сонячна, 24А, Львів",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = HPPavilion.Id,
+                                        Products = HPPavilion,
+                                        Quantity = 1,
+                                        Status = 2,
+                                    },
+                                    new OrdersProducts
+                                    {
+                                        ProductId = SamsungGalaxyA34.Id,
+                                        Products = SamsungGalaxyA34,
+                                        Quantity = 1,
+                                        Status = 5,
+                                    }
+                                }
+                            },
                         }
-
                     };
 
                     await context.AddAsync(user2);
+
+                    var BOSCHWAN28263UA = new Products
+                    {
+                        Name = "Пральна машина повногабаритна BOSCH WAN28263UA",
+                        Description = "Максимальне завантаження білизни: 8 кг\r\nТип двигуна: Інверторний\r\nКлас енергоспоживання: А+++\r\nТехнічні особливості: З дисплеєм,з можливістю дозавантаження білизни\r\nГабарити (ВхШхГ), см: 84.8 х 59.8 х 55\r\nМаксимальна швидкість віджимання, об/хв: 1400",
+                        Price = 21499m,
+                        Categories = washingMachines,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/325139122.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/325139123.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/325139124.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/325139125.jpg"
+                            },
+                        }
+                    };
+                    var AndaSeatKaiser = new Products
+                    {
+                        Name = "Крісло для геймерів Anda Seat Kaiser Frontier",
+                        Description = "Розміри сидіння: 58 x 54 см",
+                        Price = 13999m,
+                        Categories = armchairs,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/412750785.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/412750786.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/412750787.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/412750788.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(BOSCHWAN28263UA, AndaSeatKaiser);
 
                     var user3 = new Users
                     {
@@ -764,32 +936,7 @@ namespace InternetShop.Data
                         {
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Пральна машина повногабаритна BOSCH WAN28263UA",
-                                    Description = "Максимальне завантаження білизни: 8 кг\r\nТип двигуна: Інверторний\r\nКлас енергоспоживання: А+++\r\nТехнічні особливості: З дисплеєм,з можливістю дозавантаження білизни\r\nГабарити (ВхШхГ), см: 84.8 х 59.8 х 55\r\nМаксимальна швидкість віджимання, об/хв: 1400",
-                                    Price = 21499m,
-                                    Categories = washingMachines,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/325139122.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/325139123.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/325139124.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/325139125.jpg"
-                                        },
-                                    }
-                                },
+                                Products = BOSCHWAN28263UA,
                             },
                             new UsersProducts
                             {
@@ -963,32 +1110,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Крісло для геймерів Anda Seat Kaiser Frontier",
-                                    Description = "Розміри сидіння: 58 x 54 см",
-                                    Price = 13999m,
-                                    Categories = armchairs,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/412750785.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/412750786.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/412750787.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/412750788.jpg"
-                                        },
-                                    }
-                                },
+                                Products = AndaSeatKaiser,
                             },
                             new UsersProducts
                             {
@@ -1030,10 +1152,103 @@ namespace InternetShop.Data
                                 Content = "🚀 Зручність та ергономіка: Крісло Anda Seat Kaiser Frontier розроблене спеціально для геймерів, з урахуванням їхніх потреб та комфорту. Воно забезпечить вам правильну підтримку під час гри або роботи за комп'ютером, навіть під час тривалих сесій.\r\n\r\n🔥 Неперевершений дизайн: Крісло має стильний та сучасний вигляд, що додає вашому ігровому простору атмосферу професіоналізму та класу. Завдяки відмінній якості матеріалів та конструкції, воно служитиме вам протягом багатьох років.\r\n\r\n💪 Максимальна міцність: Anda Seat Kaiser Frontier відзначається своєю надзвичайною міцністю та надійністю. Воно може витримати великі навантаження та забезпечить вам стабільність під час інтенсивних рухів під час гри.\r\n\r\n🎨 Персоналізація: Виберіть крісло, яке відповідає вашому стилю та смаку, завдяки різноманітним варіантам кольорів та дизайну.\r\n\r\n🎯 Підвищте свою продуктивність: Завдяки правильному положенню тіла та комфортному сидінню, Anda Seat Kaiser Frontier допоможе вам сконцентруватися на грі та досягти нових висот у своїх ігрових досягненнях.\r\n\r\nПогрузіться у світ геймінгу з Anda Seat Kaiser Frontier та відчуйте всю енергію та емоції гри! 🌟 ",
                                 image = "Anda Seat Kaiser Frontier.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = LenovoIdeaPad3.Price,
+                                Date = DateTime.Now,
+                                DeliveryAddress = "Проспект Незалежності, 55, Харків",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = LenovoIdeaPad3.Id,
+                                        Products = LenovoIdeaPad3,
+                                        Quantity = 1,
+                                        Status = 4,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = AppleIPhone15.Price,
+                                Date = DateTime.Now.AddDays(-1),
+                                DeliveryAddress = "Проспект Незалежності, 55, Харків",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = AppleIPhone15.Id,
+                                        Products = AppleIPhone15,
+                                        Quantity = 1,
+                                        Status = 3,
+                                    }
+                                }
+                            }
                         }
                     };
 
                     await context.AddAsync(user3);
+
+                    var ELECTROLUXEW6S406WU = new Products
+                    {
+                        Name = "Пральна машина вузька ELECTROLUX EW6S406WU",
+                        Description = "Максимальне завантаження білизни: 6 кг\r\nТип двигуна: Колекторний\r\nКількість програм: 15\r\nКлас енергоспоживання: А+++\r\nТехнічні особливості: З дисплеєм, з  парою\r\nГабарити (ВхШхГ), см: 85 х 60 х 38\r\nМаксимальна швидкість віджимання, об/хв: 1000",
+                        Price = 11799m,
+                        Categories = washingMachines,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/368176035.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/179852592.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/179852593.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/179852595.jpg"
+                            },
+                        }
+                    };
+                    var Special4YouRiko = new Products
+                    {
+                        Name = "Крісло Special4You Riko Black/grey",
+                        Description = "Розміри сидіння: 48.5 х 50 см",
+                        Price = 3999m,
+                        Categories = armchairs,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/146412160.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/146412200.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/146412256.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/146412303.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(ELECTROLUXEW6S406WU, Special4YouRiko);
 
                     var user4 = new Users
                     {
@@ -1107,32 +1322,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Пральна машина вузька ELECTROLUX EW6S406WU",
-                                    Description = "Максимальне завантаження білизни: 6 кг\r\nТип двигуна: Колекторний\r\nКількість програм: 15\r\nКлас енергоспоживання: А+++\r\nТехнічні особливості: З дисплеєм, з  парою\r\nГабарити (ВхШхГ), см: 85 х 60 х 38\r\nМаксимальна швидкість віджимання, об/хв: 1000",
-                                    Price = 11799m,
-                                    Categories = washingMachines,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/368176035.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/179852592.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/179852593.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/179852595.jpg"
-                                        },
-                                    }
-                                },
+                                Products = ELECTROLUXEW6S406WU,
                             },
                             new UsersProducts
                             {
@@ -1252,32 +1442,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Крісло Special4You Riko Black/grey",
-                                    Description = "Розміри сидіння: 48.5 х 50 см",
-                                    Price = 3999m,
-                                    Categories = armchairs,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/146412160.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/146412200.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/146412256.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/146412303.jpg"
-                                        },
-                                    }
-                                },
+                                Products = Special4YouRiko,
                             },
                             new UsersProducts
                             {
@@ -1356,11 +1521,103 @@ namespace InternetShop.Data
                                 Content = "🌟 Новий рівень затишку: Завдяки інноваційному дизайну та ергономічній формі, крісло HATOR Arc дарує неперевершений комфорт, дозволяючи тобі повністю зануритися у світ гри.\r\n\r\n💪 Міцність та надійність: Завдяки високоякісним матеріалам та міцній конструкції, крісло HATOR Arc витримає будь-які випробування, надаючи тобі впевненість у своїй підтримці.\r\n\r\n🔥 Стильний дизайн: Елегантний кольоровий відтінок Stone Gray надає кріслу HATOR Arc вишуканості та стилю, доповнюючи твій ігровий простір чарівним виглядом.\r\n\r\n🕹️ Гнучкі налаштування: Регульовані підлокітники, висота сидіння та нахил спинки дозволяють зручно налаштувати крісло під свої індивідуальні потреби та уподобання.\r\n\r\n👍 Підтримка та комфорт: Забезпечуй своїй спині оптимальну підтримку та розслабленість під час годин гри чи роботи за комп'ютером.\r\n\r\n🚀 Готовий до викликів: HATOR Arc Fabric Stone Gray - твій надійний супутник у світі геймінгу, готовий допомогти тобі завоювати нові вершини і досягати найкращих результатів.\r\n\r\nОтримай істинну задоволеність від гри з кріслом HATOR Arc Fabric Stone Gray! 💫🎮",
                                 image = "HATOR Arc Fabric Stone Gray.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = BOSCHWAN28263UA.Price,
+                                Date = DateTime.Now.AddDays(-5),
+                                DeliveryAddress = "Вулиця Перемоги, 72, Одеса",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = BOSCHWAN28263UA.Id,
+                                        Products = BOSCHWAN28263UA,
+                                        Quantity = 1,
+                                        Status = 7,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = AndaSeatKaiser.Price,
+                                Date = DateTime.Now.AddDays(-1),
+                                DeliveryAddress = "Вулиця Перемоги, 72, Одеса",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = AndaSeatKaiser.Id,
+                                        Products = AndaSeatKaiser,
+                                        Quantity = 1,
+                                        Status = 1,
+                                    }
+                                }
+                            }
                         }
-
                     };
 
                     await context.AddAsync(user4);
+
+                    var MilwaukeeM12 = new Products
+                    {
+                        Name = "Акумуляторна дриль Milwaukee M12 BDD-202C",
+                        Description = "Джерело живлення: Акумулятор\r\nТип патрона: Швидкозатискний",
+                        Price = 7901m,
+                        Categories = screws,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/229527105.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/229527106.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/229527107.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/229527108.jpg"
+                            },
+                        }
+                    };
+                    var KRONERDerbyKRP = new Products
+                    {
+                        Name = "Кухонна мийка KRONER Derby KRP Brush 5050HM",
+                        Description = "Матеріал: Нержавіюча сталь\r\nТип встановлення: Під стільницю, Урізна\r\nГабарити (ШхГхВ)/Діаметр мийки: 50 х 50 х 21.5 см\r\nСифон: Є\r\nКолір: Сірий",
+                        Price = 2129m,
+                        Categories = kitchenSinks,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/414315228.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/414308211.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/414308213.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/414308214.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(MilwaukeeM12, KRONERDerbyKRP);
 
                     var user5 = new Users
                     {
@@ -1434,32 +1691,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Акумуляторна дриль Milwaukee M12 BDD-202C",
-                                    Description = "Джерело живлення: Акумулятор\r\nТип патрона: Швидкозатискний",
-                                    Price = 7901m,
-                                    Categories = screws,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/229527105.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/229527106.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/229527107.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/229527108.jpg"
-                                        },
-                                    }
-                                },
+                                Products = MilwaukeeM12,
                             },
                             new UsersProducts
                             {
@@ -1579,32 +1811,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Кухонна мийка KRONER Derby KRP Brush 5050HM",
-                                    Description = "Матеріал: Нержавіюча сталь\r\nТип встановлення: Під стільницю, Урізна\r\nГабарити (ШхГхВ)/Діаметр мийки: 50 х 50 х 21.5 см\r\nСифон: Є\r\nКолір: Сірий",
-                                    Price = 2129m,
-                                    Categories = kitchenSinks,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/414315228.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/414308211.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/414308213.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/414308214.jpg"
-                                        },
-                                    }
-                                },
+                                Products = KRONERDerbyKRP,
                             },
                             new UsersProducts
                             {
@@ -1683,11 +1890,92 @@ namespace InternetShop.Data
                                 Content = "🌊 Ефективне миття: Завдяки високоякісному матеріалу та інноваційній конструкції, мийка Kroner Derby забезпечить вам швидке та ефективне миття посуду, зберігаючи його чистим та сяючим.\r\n\r\n💧 Велика ємність: З розмірами 50x50 см, ця мийка ідеально підходить для миття різноманітної посуду, від маленьких тарілок до великих каструль та сковорідок.\r\n\r\n🔧 Практичність та зручність: Завдяки глибокому дизайну та додатковому аксесуару - щітці для миття, ви зможете легко та швидко впоратися з навіть найбруднішими посудом.\r\n\r\n🔝 Відмінна якість: Кухонна мийка Kroner Derby виготовлена з високоякісних матеріалів, що забезпечить її довговічність та надійність.\r\n\r\n🎨 Стильний дизайн: Чисті лінії та сучасний вигляд роблять цю мийку відмінним доповненням до будь-якого інтер'єру кухні.\r\n\r\nНехай миття посуду стане приємною частиною вашого дня з кухонною мийкою Kroner Derby KRP Brush - 5050HM! 🚿✨",
                                 image = "Kroner Derby KRP Brush - 5050HM.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = ELECTROLUXEW6S406WU.Price + Special4YouRiko.Price,
+                                Date = DateTime.Now.AddDays(-10),
+                                DeliveryAddress = "Вулиця Шевченка, 30, Дніпро",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = ELECTROLUXEW6S406WU.Id,
+                                        Products = ELECTROLUXEW6S406WU,
+                                        Quantity = 1,
+                                        Status = 4,
+                                    },
+                                    new OrdersProducts
+                                    {
+                                        ProductId = Special4YouRiko.Id,
+                                        Products = Special4YouRiko,
+                                        Quantity = 1,
+                                        Status = 4,
+                                    }
+                                }
+                            },
                         }
-
                     };
 
                     await context.AddAsync(user5);
+
+                    var BoschProfessional = new Products
+                    {
+                        Name = "Безщітковий ударний акумуляторний дриль-шуруповерт Bosch Professional GSB 185 -li",
+                        Description = "Джерело живлення: Акумулятор\r\nТип патрона: Швидкозатискний\r\nКраїна реєстрації бренду: Німеччина",
+                        Price = 6582m,
+                        Categories = screws,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/328069955.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/328069957.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/328069958.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/328069959.jpg"
+                            },
+                        }
+                    };
+                    var ADAMANTHorizon = new Products
+                    {
+                        Name = "Кухонна мийка ADAMANT Horizon сахара",
+                        Description = "Матеріал: Граніт\r\nТип встановлення: Урізна\r\nГабарити (ШхГхВ)/Діаметр мийки: 78 х 49.5 х 23 см\r\nСифон: Є\r\nКолір: Бежевий",
+                        Price = 4450m,
+                        Categories = kitchenSinks,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/354877353.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/354877352.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/354343090.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/354877351.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(BoschProfessional, ADAMANTHorizon);
 
                     var user6 = new Users
                     {
@@ -1761,32 +2049,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Безщітковий ударний акумуляторний дриль-шуруповерт Bosch Professional GSB 185 -li",
-                                    Description = "Джерело живлення: Акумулятор\r\nТип патрона: Швидкозатискний\r\nКраїна реєстрації бренду: Німеччина",
-                                    Price = 6582m,
-                                    Categories = screws,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/328069955.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/328069957.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/328069958.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/328069959.jpg"
-                                        },
-                                    }
-                                },
+                                Products = BoschProfessional,
                             },
                             new UsersProducts
                             {
@@ -1865,32 +2128,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Кухонна мийка ADAMANT Horizon сахара",
-                                    Description = "Матеріал: Граніт\r\nТип встановлення: Урізна\r\nГабарити (ШхГхВ)/Діаметр мийки: 78 х 49.5 х 23 см\r\nСифон: Є\r\nКолір: Бежевий",
-                                    Price = 4450m,
-                                    Categories = kitchenSinks,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/354877353.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/354877352.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/354343090.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/354877351.jpg"
-                                        },
-                                    }
-                                },
+                                Products = ADAMANTHorizon,
                             },
                             new UsersProducts
                             {
@@ -1998,10 +2236,91 @@ namespace InternetShop.Data
                                 Content = "🏛️ Класичний стиль: З виглядом, як старовинний камінь, ця кухонна мийка додасть вашій кухні особливого шарму та стилю. Кожен детально пророблений елемент створює відчуття традиції та елегантності.\r\n\r\n🌊 Практичність та функціональність: Завдяки глибокому боці та просторій частині для відведення води, мийка ADAMANT Univer Old-Stone забезпечить вам зручність та ефективність під час миття посуду.\r\n\r\n💧 Висока якість: Виготовлена з міцного та високоякісного матеріалу, ця мийка є надійним рішенням для вашої кухні, яке прослужить вам протягом багатьох років.\r\n\r\n🔝 Легкість у встановленні: Із зручною конструкцією для монтажу, ви зможете швидко та легко встановити цю мийку в вашій кухні, додаючи їй неповторний шарм.\r\n\r\n🎨 Виберіть стиль, що підходить вашому інтер'єру: ADAMANT Univer Old-Stone доступна в різних кольорах та фінішах, що дозволяє вам підібрати той, який найкраще впишеться в ваш дизайн кухні.\r\n\r\nЗробіть свою кухню місцем, де править гармонія та краса, з кухонною мийкою ADAMANT Univer Old-Stone! 💫🚰",
                                 image = "ADAMANT Univer Old-Stone.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = MilwaukeeM12.Price,
+                                Date = DateTime.Now.AddDays(-3),
+                                DeliveryAddress = "Вулиця Садова, 14, Івано-Франківськ",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = MilwaukeeM12.Id,
+                                        Products = MilwaukeeM12,
+                                        Quantity = 1,
+                                        Status = 4,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = KRONERDerbyKRP.Price,
+                                Date = DateTime.Now.AddDays(-1),
+                                DeliveryAddress = "Вулиця Садова, 14, Івано-Франківськ",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = KRONERDerbyKRP.Id,
+                                        Products = KRONERDerbyKRP,
+                                        Quantity = 1,
+                                        Status = 4,
+                                    }
+                                }
+                            }
                         }
                     };
 
                     await context.AddAsync(user6);
+
+                    var Supretto = new Products
+                    {
+                        Name = "Акумуляторна мініпила Supretto",
+                        Description = "Країна реєстрації бренду: Україна",
+                        Price = 1349m,
+                        Categories = chainSaws,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/314191384.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/314191385.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/314191386.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/314191387.jpg"
+                            },
+                        }
+                    };
+                    var Titan24 = new Products
+                    {
+                        Name = "Велосипед Titan 24\" Drone 2023 Рама-11\"",
+                        Description = "Розмір рами: 11\"\r\nКлас: Гірський, Хардтейл\r\nКількість швидкостей: 7",
+                        Price = 6990m,
+                        Categories = bicycles,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/318945179.jpg"
+                            },
+                        }
+                    };
+
+                    await context.AddRangeAsync(Supretto, Titan24);
 
                     var user7 = new Users
                     {
@@ -2096,32 +2415,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Акумуляторна мініпила Supretto",
-                                    Description = "Країна реєстрації бренду: Україна",
-                                    Price = 1349m,
-                                    Categories = chainSaws,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/314191384.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/314191385.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/314191386.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/314191387.jpg"
-                                        },
-                                    }
-                                },
+                                Products = Supretto,
                             },
                             new UsersProducts
                             {
@@ -2188,20 +2482,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Велосипед Titan 24\" Drone 2023 Рама-11\"",
-                                    Description = "Розмір рами: 11\"\r\nКлас: Гірський, Хардтейл\r\nКількість швидкостей: 7",
-                                    Price = 6990m,
-                                    Categories = bicycles,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/318945179.jpg"
-                                        },
-                                    }
-                                },
+                                Products = Titan24,
                             },
                             new UsersProducts
                             {
@@ -2276,10 +2557,77 @@ namespace InternetShop.Data
                                 Content = "🔌 Потужний та ефективний: Завдяки своїй потужності та високому обертовому моменту, ця пила впорається з будь-якою завданнями, від обрізки дерев до підготовки дров на зиму.\r\n\r\n💡 Легкий у використанні: З електричним живленням та простим управлінням, RZTK CS 2700E дозволить вам швидко та легко впоратися з різними садовими роботами без зайвих зусиль.\r\n\r\n🌿 Зручна та ергономічна конструкція: Зручна рукоятка та легка конструкція забезпечують вам комфорт та стабільність під час роботи навіть протягом тривалого часу.\r\n\r\n🛠️ Міцність та надійність: Виготовлена з високоякісних матеріалів та маючи міцну конструкцію, RZTK CS 2700E є надійним партнером для вашого саду чи подвір'я.\r\n\r\n🌲 Насолоджуйтеся роботою на свіжому повітрі з легкою та потужною ланцюговою електричною пилою RZTK CS 2700E! 🌳💪",
                                 image = "RZTK CS 2700E.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = ADAMANTHorizon.Price,
+                                Date = DateTime.Now.AddDays(-2),
+                                DeliveryAddress = "Вулиця Гагаріна, 7, Запоріжжя",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = ADAMANTHorizon.Id,
+                                        Products = ADAMANTHorizon,
+                                        Quantity = 1,
+                                        Status = 1,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = BoschProfessional.Price,
+                                Date = DateTime.Now.AddDays(-2),
+                                DeliveryAddress = "Вулиця Гагаріна, 7, Запоріжжя",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = BoschProfessional.Id,
+                                        Products = BoschProfessional,
+                                        Quantity = 1,
+                                        Status = 0,
+                                    }
+                                }
+                            }
                         }
                     };
 
                     await context.AddAsync(user7);
+
+                    var Grunhelm = new Products
+                    {
+                        Name = "Ланцюгова електропила Grunhelm GES22-40B 2 кВт",
+                        Description = "Країна реєстрації бренду: Україна",
+                        Price = 1899m,
+                        Categories = chainSaws,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/232969814.jpg"
+                            },
+                        }
+                    };
+                    var ArdisBlaze = new Products
+                    {
+                        Name = "Велосипед Ardis Blaze 29\" 19\"",
+                        Description = "Розмір рами: 19\"\r\nКлас: Гірський\r\nКількість швидкостей: 21",
+                        Price = 13473m,
+                        Categories = bicycles,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/226873355.jpg"
+                            },
+                        }
+                    };
 
                     var user8 = new Users
                     {
@@ -2324,20 +2672,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Ланцюгова електропила Grunhelm GES22-40B 2 кВт",
-                                    Description = "Країна реєстрації бренду: Україна",
-                                    Price = 1899m,
-                                    Categories = chainSaws,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/232969814.jpg"
-                                        },
-                                    }
-                                },
+                                Products = Grunhelm,
                             },
                             new UsersProducts
                             {
@@ -2441,20 +2776,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Велосипед Ardis Blaze 29\" 19\"",
-                                    Description = "Розмір рами: 19\"\r\nКлас: Гірський\r\nКількість швидкостей: 21",
-                                    Price = 13473m,
-                                    Categories = bicycles,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/226873355.jpg"
-                                        },
-                                    }
-                                },
+                                Products = ArdisBlaze,
                             },
                             new UsersProducts
                             {
@@ -2526,10 +2848,101 @@ namespace InternetShop.Data
                                 Content = "🌟 Досягніть нових вершин: Цей велосипед - ваш надійний компаньйон у будь-яких пригодах. Він готовий взяти вас на відмінні покатушки як по місту, так і по гірських стежках.\r\n\r\n🚴‍♀️ Комфорт та маневреність: Зручне сидіння та стійке кермо забезпечать вам комфортну їзду, а маневреність цього велосипеда дозволить вам легко керувати навіть на складних маршрутах.\r\n\r\n🏞️ Досвідчуйте природу: З розміром колеса 27.5\" та рамою 17\", Ardis Shultz - ідеальний вибір для любителів велопрогулянок по лісовим стежкам та гірським дорогам.\r\n\r\n🔧 Надійність та якість: Ardis Shultz відомий своєю міцністю та надійністю, що робить його відмінним вибором для будь-якого велосипедиста.\r\n\r\n🌄 Приєднуйтеся до нас та рушайте в захопливі пригоди разом з Ardis Shultz 27.5\" 17\"! 🌄🌳 ",
                                 image = "Ardis Shultz.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = Supretto.Price,
+                                Date = DateTime.Now.AddDays(-4),
+                                DeliveryAddress = "Проспект Леніна, 101, Чернігів",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = Supretto.Id,
+                                        Products = Supretto,
+                                        Quantity = 1,
+                                        Status = 6,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = Titan24.Price,
+                                Date = DateTime.Now.AddDays(-9),
+                                DeliveryAddress = "Проспект Леніна, 101, Чернігів",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = Titan24.Id,
+                                        Products = Titan24,
+                                        Quantity = 1,
+                                        Status = 5,
+                                    }
+                                }
+                            }
                         }
                     };
 
                     await context.AddAsync(user8);
+
+                    var LIGHTWAVE = new Products
+                    {
+                        Name = "Бас-гітара LIGHTWAVE VL-5FL nat",
+                        Description = "Кількість струн: 5",
+                        Price = 110593m,
+                        Categories = bassGuitars,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/286843187.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/286843199.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/286843212.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/286843223.jpg"
+                            },
+                        }
+                    };
+                    var HatorHellraizer = new Products
+                    {
+                        Name = "Навушники Hator Hellraizer PC Edition Black",
+                        Description = "Тип навушників: Накладні\r\nДіапазон частот навушників: 15 Гц - 25 кГц\r\nВага: 260 г",
+                        Price = 799m,
+                        Categories = headphone,
+                        Images = new List<Images>
+                        {
+                            new Images
+                            {
+                                Url = "https://content1.rozetka.com.ua/goods/images/big/378171828.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/378171829.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content.rozetka.com.ua/goods/images/big/378171830.jpg"
+                            },
+                            new Images
+                            {
+                                Url = "https://content2.rozetka.com.ua/goods/images/big/378171831.jpg"
+                            },
+                        }
+                    };
 
                     var user9 = new Users
                     {
@@ -2603,32 +3016,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Бас-гітара LIGHTWAVE VL-5FL nat",
-                                    Description = "Кількість струн: 5",
-                                    Price = 110593m,
-                                    Categories = bassGuitars,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/286843187.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/286843199.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/286843212.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/286843223.jpg"
-                                        },
-                                    }
-                                },
+                                Products = LIGHTWAVE,
                             },
                             new UsersProducts
                             {
@@ -2744,32 +3132,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Навушники Hator Hellraizer PC Edition Black",
-                                    Description = "Тип навушників: Накладні\r\nДіапазон частот навушників: 15 Гц - 25 кГц\r\nВага: 260 г",
-                                    Price = 799m,
-                                    Categories = headphone,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/378171828.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/378171829.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/378171830.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/378171831.jpg"
-                                        },
-                                    }
-                                },
+                                Products = HatorHellraizer,
                             },
                             new UsersProducts
                             {
@@ -2848,6 +3211,33 @@ namespace InternetShop.Data
                                 Content = "🔊 Високоякісний звук: Незрівняний звук, що доставляється завдяки передовій технології, дозволить тобі відчути кожну ноту та насолодитися кришталево чистим звучанням улюбленої музики.\r\n\r\n🎵 Бездоганний дизайн: Елегантний білий колір та стильний дизайн роблять Samsung Galaxy Buds2 Pro White не лише джерелом прекрасного звуку, але й модним аксесуаром для будь-якого образу.\r\n\r\n🎧 Комфортний досвід: Зручний дизайн та м'які амбушури гарантують максимальний комфорт протягом усього дня, навіть під час тривалих прослуховувань.\r\n\r\n📱 Підключайся та насолоджуйся: Легке підключення до твого смартфона Samsung Galaxy або будь-якого іншого пристрою з Bluetooth, щоб насолоджуватися улюбленою музикою в будь-який момент.\r\n\r\n🔋 Відмінний час роботи: Завдяки великій місткості батареї, ти зможеш насолоджуватися музикою протягом тривалого часу, не переймаючись про зарядку.\r\n\r\nОчейне якісне звучання та стильний дизайн - все це з Samsung Galaxy Buds2 Pro White! 🎧🌟",
                                 image = "Samsung Galaxy Buds2 Pro White.webp",
                             }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = Grunhelm.Price + ArdisBlaze.Price,
+                                Date = DateTime.Now,
+                                DeliveryAddress = "Вулиця Вокзальна, 3, Рівне",
+                                Delivery = ukrposhta,
+                                DeliveryId = ukrposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = Grunhelm.Id,
+                                        Products = Grunhelm,
+                                        Quantity = 1,
+                                        Status = 5,
+                                    },
+                                    new OrdersProducts
+                                    {
+                                        ProductId = ArdisBlaze.Id,
+                                        Products = ArdisBlaze,
+                                        Quantity = 1,
+                                        Status = 3,
+                                    }
+                                }
+                            },
                         }
                     };
 
@@ -2983,32 +3373,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Бас-гітара Cort C4 Deluxe",
-                                    Description = "Кількість струн: 4\r\nМензура: 34\"",
-                                    Price = 15675m,
-                                    Categories = bassGuitars,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/409648772.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/409648773.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content.rozetka.com.ua/goods/images/big/409648774.jpg"
-                                        },
-                                        new Images
-                                        {
-                                            Url = "https://content2.rozetka.com.ua/goods/images/big/409648775.jpg"
-                                        },
-                                    }
-                                },
+                                Products = CortC4Deluxe,
                             },
                             new UsersProducts
                             {
@@ -3128,20 +3493,7 @@ namespace InternetShop.Data
                             },
                             new UsersProducts
                             {
-                                Products = new Products
-                                {
-                                    Name = "Навушники Apple iPhone EarPods",
-                                    Description = "Тип навушників: Вкладки",
-                                    Price = 999m,
-                                    Categories = headphone,
-                                    Images = new List<Images>
-                                    {
-                                        new Images
-                                        {
-                                            Url = "https://content1.rozetka.com.ua/goods/images/big/10813688.jpg"
-                                        },
-                                    }
-                                },
+                                Products = AppleIPhoneEarPods,
                             },
                         },
                         BlogPost = new List<BlogPost>
@@ -3161,6 +3513,44 @@ namespace InternetShop.Data
                                 Title = "Підкресліть свій музичний стиль з бас-гітарою CORT Action V Plus! 🎸✨",
                                 Content = "🎶 Потужний звук: За допомогою високоякісних звукознімачів та інноваційної технології, ця бас-гітара забезпечить вам глибокі баси та яскраві високі ноти, дозволяючи вам створювати неповторну музику.\r\n\r\n🎸 Зручність гри: Зручна форма та ергономічний дизайн роблять гру на цій бас-гітарі легкою та приємною, навіть протягом тривалого виконання.\r\n\r\n🎵 Вибір професіоналів: CORT Action V Plus - це вибір багатьох професійних музикантів, що шукають якість та надійність у своєму інструменті.\r\n\r\n🔊 Виразність звуку: Завдяки своїй чудовій звукопередачі та динамічному діапазону, ця бас-гітара дозволить вам виразно виразити свої музичні ідеї.\r\n\r\nЗануртеся у світ музики з бас-гітарою CORT Action V Plus та створіть музичні шедеври! 🎶🌟",
                                 image = "CORT Action V Plus.webp",
+                            }
+                        },
+                        Orders = new List<Orders> {
+                            new Orders
+                            {
+                                TotalPrice = LIGHTWAVE.Price,
+                                Date = DateTime.Now,
+                                DeliveryAddress = "Проспект Миру, 5, Луцьк",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = LIGHTWAVE.Id,
+                                        Products = LIGHTWAVE,
+                                        Quantity = 1,
+                                        Status = 3,
+                                    }
+                                }
+                            },
+                            new Orders
+                            {
+                                TotalPrice = HatorHellraizer.Price,
+                                Date = DateTime.Now.AddDays(-2),
+                                DeliveryAddress = "Проспект Миру, 5, Луцьк",
+                                Delivery = novaposhta,
+                                DeliveryId = novaposhta.Id,
+                                OrdersProducts = new List<OrdersProducts>
+                                {
+                                    new OrdersProducts
+                                    {
+                                        ProductId = HatorHellraizer.Id,
+                                        Products = HatorHellraizer,
+                                        Quantity = 1,
+                                        Status = 0
+                                    }
+                                }
                             }
                         }
                     };
