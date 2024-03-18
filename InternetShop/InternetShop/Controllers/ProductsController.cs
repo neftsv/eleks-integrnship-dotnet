@@ -75,10 +75,17 @@ namespace InternetShop.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
+            string currentUserLogin = User.Identity.Name;
+            var currentUserId = _context.Users
+            .Where(u => u.Email == currentUserLogin)
+            .Select(u => u.Id)
+            .FirstOrDefault();
+
             var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
             {
                 Id = p.ProductId,
-                UserId = p.UserId,
+                ProductUserId = p.UserId,
+                CurrentUserId = currentUserId,
                 CategoryId = p.Products.CategoryId,
                 Images = p.Products.Images,
                 Name = p.Products.Name,
@@ -93,7 +100,7 @@ namespace InternetShop.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "2, 3")]
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             var user = User;
@@ -101,18 +108,27 @@ namespace InternetShop.Controllers
             {
                 return NotFound();
             }
+            string currentUserLogin = User.Identity.Name;
+            var currentUserId = _context.Users
+            .Where(u => u.Email == currentUserLogin)
+            .Select(u => u.Id)
+            .FirstOrDefault();
 
             var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
             {
                 Id = p.ProductId,
-                UserId = p.UserId,
+                ProductUserId = p.UserId,
+                CurrentUserId = currentUserId,
                 CategoryId = p.Products.CategoryId,
                 Images = p.Products.Images,
                 Name = p.Products.Name,
                 Price = p.Products.Price,
                 Description = p.Products.Description
             }).FirstOrDefault();
-
+            if(model.CurrentUserId != model.ProductUserId && !User.IsInRole("2") && !User.IsInRole("3"))
+            {
+                return NotFound();
+            }
             if (model == null)
             {
                 return NotFound();
@@ -205,10 +221,25 @@ namespace InternetShop.Controllers
             //return View(product);
         }
 
-        [Authorize(Roles = "2, 3")]
+        [Authorize]
         public async Task<IActionResult> Delete(int id)
         {
+            string currentUserLogin = User.Identity.Name;
+            var currentUserId = _context.Users
+            .Where(u => u.Email == currentUserLogin)
+            .Select(u => u.Id)
+            .FirstOrDefault();
+
+            var productUserId = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
+            {
+                ProductUserId = p.UserId
+            }).FirstOrDefault();
+
             var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            if (currentUserId != productUserId.ProductUserId && !User.IsInRole("2") && !User.IsInRole("3"))
+            {
+                return NotFound();
+            }
             _context.Remove(product);
             _context.SaveChanges();
             return RedirectToAction("Index");
