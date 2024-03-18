@@ -113,19 +113,20 @@ namespace InternetShop.Controllers
             .Where(u => u.Email == currentUserLogin)
             .Select(u => u.Id)
             .FirstOrDefault();
+            var categiries = await _context.Categories.ToListAsync();
 
-            var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductDetailsViewModel
+            var model = _context.UsersProducts.Where(p => p.ProductId == id).Select(p => new ProductCreateViewModel
             {
                 Id = p.ProductId,
                 ProductUserId = p.UserId,
                 CurrentUserId = currentUserId,
                 CategoryId = p.Products.CategoryId,
-                Images = p.Products.Images,
+                Categories = categiries,
                 Name = p.Products.Name,
                 Price = p.Products.Price,
                 Description = p.Products.Description
             }).FirstOrDefault();
-            if(model.CurrentUserId != model.ProductUserId && !User.IsInRole("2") && !User.IsInRole("3"))
+            if (model.CurrentUserId != model.ProductUserId && !User.IsInRole("2") && !User.IsInRole("3"))
             {
                 return NotFound();
             }
@@ -139,32 +140,30 @@ namespace InternetShop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,Name,Images,Description,Price")] Products product)
+        public async Task<IActionResult> Edit(ProductCreateViewModel model)
         {
-            var existingProduct = await _context.Products.FindAsync(id);
+            var existingProduct = await _context.Products.FindAsync(model.Id);
             if (true)
             {
                 try
                 {
-                    
                     if (existingProduct == null)
                     {
                         return NotFound();
                     }
 
                     // Update the properties of the existing entity
-                    existingProduct.CategoryId= product.CategoryId;
-                    existingProduct.Name = product.Name;
-                    existingProduct.Images = product.Images;
-                    existingProduct.Description = product.Description;
-                    existingProduct.Price = product.Price;
+                    existingProduct.CategoryId = model.CategoryId;
+                    existingProduct.Name = model.Name;
+                    existingProduct.Description = model.Description;
+                    existingProduct.Price = model.Price;
 
                     await _context.SaveChangesAsync();
                     //return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
+                    if (!ProductExists(model.Id))
                     {
                         return NotFound();
                     }
@@ -178,9 +177,14 @@ namespace InternetShop.Controllers
             return NotFound();
         }
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var categiries = await _context.Categories.ToListAsync();
+            var model = new ProductCreateViewModel
+            {
+                Categories = categiries,
+            };
+            return View(model);
         }
 
         // POST: /Blog/Create

@@ -8,58 +8,54 @@
 }
 
 <h1>@Model.Name</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <div class="slider">
-                    <ul id="slides" class="slides">
-                        @foreach (var item in Model.Images)
-                        {
-                            <li>
-                                @if (@item.Url.Contains("http"))
-                                {
-                                    <img class="pruduct-img" src="@item.Url" alt="Image 1">
-                                }
-                                else
-                                {
-                                    <img class="pruduct-img" src="/ProductImages/@item.Url" alt="Image 1">
-                                }
-                            </li>
-                        }
-                    </ul>
-                    <button class="prev" onclick="moveSlide(-1)">❮</button>
-                    <button class="next" onclick="moveSlide(1)">❯</button>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class="slider">
+                <ul id="slides" class="slides">
+                    @foreach (var item in Model.Images)
+                    {
+                        <li>
+                            @if (@item.Url.Contains("http"))
+                            {
+                                <img class="pruduct-img" src="@item.Url" alt="Image 1">
+                            }
+                            else
+                            {
+                                <img class="pruduct-img" src="/ProductImages/@item.Url" alt="Image 1">
+                            }
+                        </li>
+                    }
+                </ul>
+                <button class="prev" onclick="moveSlide(-1)">❮</button>
+                <button class="next" onclick="moveSlide(1)">❯</button>
             </div>
-        
-            <div class="col-6">
-                <h3></h3>
+        </div>
+
+        <div class="col-6" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="container">
                 <p>@Model.Description</p>
-                
-                <div class="container">
-                    <div class="row">
-                        <div class="row justify-content-between ">
-                            <div class="col-6 block-center">
+                <div class="row">
+                    <div class="row justify-content-between ">
+                        <div class="col-6 block-center">
+                            <div style="vertical-align: middle;">
+                                <h5>@Model.Price UAH</h5>
+                            </div>
+                        </div>
+                        <div class="col-6 block-center">
+                            <form asp-action="AddToCart" asp-controller="Products" asp-route-id="@Model.Id" method="post" class="text-right">
                                 <div style="vertical-align: middle;">
-                                    <h5>@Model.Price UAH</h5>
+                                    <input type="number" min="1" required value="1" name="quantity" style="width: 100px" />
+                                    <button type="submit" class="btn btn-warning text-white mr-2">Add to cart</button>
                                 </div>
-                            </div>
-                            <div class="col-6 block-center">
-                                <form asp-action="AddToCart" asp-controller="Products" asp-route-id="@Model.Id" method="post" class="text-right">
-                                    <div style="vertical-align: middle;">
-                                        <input type="number" min="1" required value="1" name="quantity" style="width: 100px" />
-                                        <button type="submit" class="btn btn-warning text-white mr-2">Add to cart</button>
-                                    </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-
-                
-                
-                @if (Model.CurrentUserId == Model.ProductUserId || User.IsInRole("2") || User.IsInRole("3")) {
-                    <div class="block-bottom-right">
+            </div>
+            @if (Model.CurrentUserId == Model.ProductUserId || User.IsInRole("2") || User.IsInRole("3"))
+            {
+                <div class="block-bottom-right">
                     <a asp-action="Edit" asp-route-id="@Model.Id">
                         <div>
                             <button type="submit" class="btn btn-warning text-white mr-2">Edit</button>
@@ -70,11 +66,12 @@
                             <button type="submit" class="btn btn-warning text-white mr-2">Delete</button>
                         </div>
                     </form>
-                    </div>
-                }
-            </div>
+                </div>
+            }
+
         </div>
     </div>
+</div>
 
 <script>
     let currentIndex = 0;
@@ -116,10 +113,11 @@
         align-items:center;
     }
 
-    .block-bottom-right{
-        display:flex;
-        bottom: 0;
-        right: 0;
+    .block-bottom-right {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 10px;
     }
 
     .slider {
