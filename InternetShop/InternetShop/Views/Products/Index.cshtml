@@ -183,10 +183,18 @@
         <div class="row row-cols-1 row-cols-md-3 g-4 padding_top">
             @foreach (var item in Model.Items)
             {
-                <div class="col">
+                <a asp-action="Details" asp-route-id="@item.Id" class="nav-link" style="color:black">
+                    <div class="col">
                     <div class="card">
                         <div class="card-img">
-                            <img src="@item.Images[0].Url" class="prod-img" alt="...">
+                            @if (item.Images[0].Url.Contains("http"))
+                            {
+                                <img src="@item.Images[0].Url" class="prod-img" alt="...">
+                            }
+                            else
+                            {
+                                <img src="@Url.Content($"~/ProductImages/{@item.Images[0].Url}")" class="prod-img" />
+                            }
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><b>@item.Name</b></h5>
@@ -194,6 +202,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
             }
         </div>
         <br /><br />
