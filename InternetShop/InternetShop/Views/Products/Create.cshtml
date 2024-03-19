@@ -9,12 +9,12 @@
 <body>
     <div class="container mt-5">
         <div class="border p-3">
-            <h2 class="mb-4 text-center">Create new post</h2>
+            <h2 class="mb-4 text-center">Add new product</h2>
 
             <form asp-action="Create" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="CategoryId" class="font-weight-bold"></label>
+                    <label asp-for="CategoryId" class="font-weight-bold">Category:</label>
                     <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))">
                     </select>
                     <span asp-validation-for="CategoryId" class="text-danger"></span>

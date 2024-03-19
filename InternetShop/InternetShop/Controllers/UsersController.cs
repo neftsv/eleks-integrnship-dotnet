@@ -84,7 +84,6 @@ namespace InternetShop.Controllers
                 // Checking that all fields are filled
                 if (string.IsNullOrWhiteSpace(users.Name) ||
                     string.IsNullOrWhiteSpace(users.Surname) ||
-                    string.IsNullOrWhiteSpace(users.Patronimic) ||
                     string.IsNullOrWhiteSpace(users.Email) ||
                     string.IsNullOrWhiteSpace(users.PhoneNumber))
                 {

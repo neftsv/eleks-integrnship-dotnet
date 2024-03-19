@@ -14,14 +14,19 @@
             <div class="mb-1 or">
                 <div class="text-center font-weight-bold">Or</div>
             </div>
-            <div class="mb-1">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+            <div class="form-group mb-3">
+                <input asp-for="Email" class="form-control" placeholder="Email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="mb-1">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
+            <div class="form-group mb-3">
+                <div class="input-group password-group">
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Password" id="passwordField" />
+                    <div class="input-group-text">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" onclick="togglePasswordVisibility()" id="showPasswordCheckbox">
+                        </div>
+                    </div>
+                </div>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="mb-3 or text-center">
