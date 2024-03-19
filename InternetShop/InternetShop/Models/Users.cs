@@ -15,7 +15,7 @@ namespace InternetShop.Models
         public string Password { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
-        public string Patronimic { get; set; }
+        public string? Patronimic { get; set; }
         public string PhoneNumber { get; set; }
         public virtual Carts Cart { get; set; }
         public virtual List<UsersProducts> UsersProducts { get; set; }

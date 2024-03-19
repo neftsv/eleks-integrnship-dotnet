@@ -152,14 +152,13 @@ namespace InternetShop.Controllers
                         return NotFound();
                     }
 
-                    // Update the properties of the existing entity
                     existingProduct.CategoryId = model.CategoryId;
                     existingProduct.Name = model.Name;
                     existingProduct.Description = model.Description;
                     existingProduct.Price = model.Price;
 
                     await _context.SaveChangesAsync();
-                    //return RedirectToAction(nameof(Index));
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -187,7 +186,6 @@ namespace InternetShop.Controllers
             return View(model);
         }
 
-        // POST: /Blog/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -216,13 +214,10 @@ namespace InternetShop.Controllers
                 Price = product.Price,
                 Description = product.Description
             };
-            //product.UserId = Convert.ToInt32(user?.Id);
 
             _context.Add(prod);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Products");
-
-            //return View(product);
         }
 
         [Authorize]

@@ -34,9 +34,6 @@ namespace InternetShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,7 +45,16 @@ namespace InternetShop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("BlogPosts");
                 });
@@ -321,7 +327,6 @@ namespace InternetShop.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Patronimic")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
@@ -363,6 +368,17 @@ namespace InternetShop.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UsersProducts");
+                });
+
+            modelBuilder.Entity("InternetShop.Models.BlogPost", b =>
+                {
+                    b.HasOne("InternetShop.Models.Users", "Users")
+                        .WithMany("BlogPost")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("InternetShop.Models.Carts", b =>
@@ -535,6 +551,8 @@ namespace InternetShop.Migrations
 
             modelBuilder.Entity("InternetShop.Models.Users", b =>
                 {
+                    b.Navigation("BlogPost");
+
                     b.Navigation("Cart")
                         .IsRequired();
 
