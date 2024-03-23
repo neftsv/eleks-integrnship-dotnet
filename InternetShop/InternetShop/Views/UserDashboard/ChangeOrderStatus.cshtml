@@ -1,0 +1,51 @@
+﻿@model List<InternetShop.Models.Products>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-danger">
+        <p>No products found.</p>
+    </div>
+}
+else
+{
+<form method="post" action="@Url.Action("SaveOrderStatus", "ChangeOrderStatus")">
+    <table class="table table-striped">
+        <thead>
+            <tr class="first-row-userdb">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>@Model[i].Id</td>
+                    <td style="max-width: auto; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">@Model[i].Name</td>
+                    <td style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">@Model[i].Description</td>
+                    <td>@Model[i].Price</td>
+                    <td>
+                        <input type="hidden" name="productIds[@i]" value="@Model[i].Id">
+                        <select name="statuses[@i]">
+                            <option value="0" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 0)">Confirm</option>
+                            <option value="1" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 1)">Sent</option>
+                            <option value="2" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 2)">Transit</option>
+                            <option value="4" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 4)">Received</option>
+                            <option value="5" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 5)">Failed</option>
+                            <option value="6" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 6)">Canceld</option>
+                            <option value="7" selected="@(Model[i].OrdersProducts != null && Model[i].OrdersProducts[i] != null && Model[i].OrdersProducts[i].Status == 7)">Returned</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="submit" value="Save" class="btn btn-register"></input>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+}

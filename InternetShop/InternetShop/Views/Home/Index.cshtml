@@ -50,9 +50,26 @@
             color: white;
         }
 
-    .item-img{
+        .category-item:hover .item-img-container {
+            border: 2px solid #FF9B42
+        }
+
+    .item-img-container{
+        border-radius: 10px;
+        display: flex;
+        justify-content:center;
+        align-items: center;
         background: #fff;
-        border-radius: 100px;
+        width:200px;
+        height: 200px;
+        overflow:hidden;
+    }
+
+    .item-img{
+        width: fit-content;
+        height: fit-content;
+        max-height:200px;
+        max-width:200px;
     }
 
     button{
@@ -79,7 +96,9 @@
             @foreach (var item in Model)
             {
                 <a href="@Url.Action("Index", "Products", new { categoryId = item.Id })" class="category-item nav-link">
-                    <img class="item-img" src="@item.ImageUrl" width="200" height="200" />
+                    <div class="item-img-container">
+                        <img src="@item.ImageUrl" class="item-img" />
+                    </div>
                     <h6>@item.Name</h6>
                 </a>
             }

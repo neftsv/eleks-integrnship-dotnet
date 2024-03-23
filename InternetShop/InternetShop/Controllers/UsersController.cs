@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using InternetShop.Data;
 using InternetShop.Models;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Authorization;
+using InternetShop.Services;
 
 namespace InternetShop.Controllers
 {
@@ -22,12 +24,14 @@ namespace InternetShop.Controllers
         }
 
         // GET: Users
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());
         }
 
         // GET: Users/Details/5
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -80,7 +84,6 @@ namespace InternetShop.Controllers
                 // Checking that all fields are filled
                 if (string.IsNullOrWhiteSpace(users.Name) ||
                     string.IsNullOrWhiteSpace(users.Surname) ||
-                    string.IsNullOrWhiteSpace(users.Patronimic) ||
                     string.IsNullOrWhiteSpace(users.Email) ||
                     string.IsNullOrWhiteSpace(users.PhoneNumber))
                 {
@@ -127,9 +130,13 @@ namespace InternetShop.Controllers
             {
                 users.RoleId = defaultRoleId; // Assigning a role to a user
 
+                // Hashing the new password before saving it
+                var hashPass = PasswordManager.HashPassword(form["Password"]); 
+                users.Password = hashPass;
+
                 _context.Add(users);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Login", "Account");
             }
             return View(users);
         }
@@ -151,10 +158,9 @@ namespace InternetShop.Controllers
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,RoleId,Email,Password,Surname,Name,Patronimic,PhoneNumber")] Users users)
         {
             if (id != users.Id)
@@ -162,27 +168,27 @@ namespace InternetShop.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            // Hashing the new password before saving it
+            var hashPass = PasswordManager.HashPassword(users.Password);
+            users.Password = hashPass;
+
+            try
             {
-                try
-                {
-                    _context.Update(users);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsersExists(users.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(users);
+                await _context.SaveChangesAsync();
             }
-            return View(users);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsersExists(users.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Users/Delete/5
@@ -206,6 +212,7 @@ namespace InternetShop.Controllers
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "2,3")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var users = await _context.Users.FindAsync(id);

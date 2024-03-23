@@ -126,7 +126,7 @@ namespace InternetShop.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Order");
+            return RedirectToAction("Index", "UserDashboard");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

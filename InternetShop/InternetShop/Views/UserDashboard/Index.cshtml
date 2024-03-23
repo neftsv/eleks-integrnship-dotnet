@@ -15,32 +15,34 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col text-center">
-            <div class="mb-3">
+    <div class="col text-center">
+        <div class="mb-3">
             <h3 class="h_dashboard">Your current orders:</h3>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="overflow-auto overflow_dashboard">
-                            <ul class="list-group">
-                                @foreach (var order in Model.Orders)
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="overflow-auto overflow_dashboard">
+                        <ul class="list-group">
+                            @if (Model.Orders != null && Model.Orders.Any())
+                            {
+                                var hasProducts = false;
+                                foreach (var order in Model.Orders)
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
-                                        @if (orderProduct.Status < 3)
+                                        if (orderProduct.Status < 3)
                                         {
+                                            hasProducts = true;
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                        <span>@orderProduct.Products.Name</span>
-                                                        x'@orderProduct.Quantity
-                                                    @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
-                                                        {
-                                                            <img src="@Url.Content(orderProduct.Products.Images.First().Url)" alt="Product Image" style="max-width: 50px; max-height: 50px;" />
-                                                        }
-                                                </div>
-                                                <div>
+                                                    <div style="display: flex; align-items: center;">
+                                                        <span style="max-width: 320px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                            @orderProduct.Products.Name
+                                                        </span>
+                                                        <span style="margin-left: 5px;">x'@orderProduct.Quantity</span>
+                                                    </div>
+                                                    <div>
                                                         @orderProduct.Products.Price UAH |
                                                         <a class="status_current_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">
                                                             @if (orderProduct.Status == 0)
@@ -56,45 +58,56 @@
                                                                 <text>Transit</text>
                                                             }
                                                         </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
                                         }
                                     }
                                 }
-                            </ul>
-                        </div>
+                                if (!hasProducts)
+                                {
+                                    <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
+                                }
+                            }
+                            else
+                            {
+                                <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col text-center">
-            <div class="mb-3">
+    </div>
+    <div class="col text-center">
+        <div class="mb-3">
             <h3 class="h_dashboard">Your order history:</h3>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="overflow-auto overflow_dashboard">
-                            <ul class="list-group">
-                                @foreach (var order in Model.Orders)
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="overflow-auto overflow_dashboard">
+                        <ul class="list-group">
+                            @if (Model.Orders != null && Model.Orders.Any())
+                            {
+                                var hasProducts = false;
+                                foreach (var order in Model.Orders)
                                 {
                                     foreach (var orderProduct in order.OrdersProducts)
                                     {
-                                        @if (orderProduct.Status > 3)
+                                        if (orderProduct.Status > 3)
                                         {
+                                            hasProducts = true;
                                             <li class="list-group-item list_group_orders">
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                <div>
-                                                        <span>@orderProduct.Products.Name</span>
-                                                        x'@orderProduct.Quantity
-                                                    @if (orderProduct.Products.Images != null && orderProduct.Products.Images.Any())
-                                                    {
-                                                        <img src="@Url.Content(orderProduct.Products.Images.First().Url)" alt="Product Image" style="max-width: 50px; max-height: 50px;" />
-                                                    }
-                                                </div>
-                                                <div>
-                                                        @orderProduct.Orders.TotalPrice UAH |
+                                                    <div style="display: flex; align-items: center;">
+                                                        <span style="max-width: 320px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                                            @orderProduct.Products.Name
+                                                        </span>
+                                                        <span style="margin-left: 5px;">x'@orderProduct.Quantity</span>
+                                                    </div>
+                                                    <div>
+                                                        @orderProduct.Products.Price UAH |
                                                         <a class="status_history_order" href="@Url.Action("OrderDetails", "UserDashboard", new { orderId = order.Id })">
                                                             @if(orderProduct.Status == 4 )
                                                             {
@@ -106,37 +119,58 @@
                                                             }
                                                             else if (orderProduct.Status == 6)
                                                             {
-                                                                <text>Canceld</text>
+                                                                <text>Canceled</text>
                                                             }
                                                             else
                                                             {
                                                                 <text>Returned</text>
                                                             }
                                                         </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
                                         }
                                     }
                                 }
-                            </ul>
-                        </div>
+                                if (!hasProducts)
+                                {
+                                    <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
+                                }
+                            }
+                            else
+                            {
+                                <h4 class="h_dashboard" style="border-radius: 20px; background-color: #d9e5d6">List is empty</h4>
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 
     <div class="row d-flex justify-content-center mb-3 mt-3">
         <div class="col">
             <a class="btn btn-sm mb-1 btn_edit_password" asp-action="EditPassword" asp-route-id="@Model.Id">Change password</a>
+            @if (@Model.RoleId == 2 || @Model.RoleId == 3)
+            {
+                <a class="btn btn-sm mb-1 btn_edit_password" style="background-color: orangered" asp-action="Adminpannel">Admin Panel</a>
+            }
         </div>
+    </div>
+    <div row d-flex justify-content-center mb-3 mt-3>
+        <a class="btn btn-sm mb-1 btn_edit_password" asp-controller="UserDashboard" asp-action="ChangeOrderStatus">Orders status panel</a>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h3 class="h_dashboard text-center mb-5">Your posts</h3>
+            @if (ViewBag.UserPosts == null || ViewBag.UserPosts.Count == 0)
+            {
+                <h4 class="h_dashboard text-center" style="border-radius: 20px; background-color: #d9e5d6">You don't have any posts yet</h4>
+            }else{
             <div class="row">
                 @foreach (var post in ViewBag.UserPosts)
                 {
@@ -144,6 +178,9 @@
                         <div class="card" style="background-color: #d9e5d6; border: none;">
                             <div class="card-body">
                                 <h5 class="card-title" style="font-family: 'Georgia', serif; font-size: 1.2rem; color: #333;">@post.Title</h5>
+                                    <div class="text-center" style="background-color: white">
+                                        <img class="img_dashboard" src="@Url.Content($"~/BlogImages/{post.image}")" />
+                                    </div>
                                 <p class="card-text" style="color: #555;">
                                     @post.Content.Substring(0, Math.Min(100, @post.Content.Length))
                                     @if (post.Content.Length > 100)
@@ -164,6 +201,7 @@
                     </div>
                 }
             </div>
+            }
         </div>
     </div>
 </div>
